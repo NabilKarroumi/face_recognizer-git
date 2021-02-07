@@ -12,15 +12,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Manual_photos_taker(object):
-    def setupUi(self, Manual_photos_taker):
-        Manual_photos_taker.setObjectName("Manual_photos_taker")
-        Manual_photos_taker.resize(650, 700)
-        Manual_photos_taker.setMinimumSize(QtCore.QSize(650, 700))
-        Manual_photos_taker.setMaximumSize(QtCore.QSize(650, 700))
-        Manual_photos_taker.setStyleSheet("QWidget {\n"
+    def setupUi(self, manual_photos_taker):
+        manual_photos_taker.setObjectName("manual_photos_taker")
+        manual_photos_taker.resize(650, 700)
+        manual_photos_taker.setMinimumSize(QtCore.QSize(650, 700))
+        manual_photos_taker.setMaximumSize(QtCore.QSize(650, 700))
+        manual_photos_taker.setStyleSheet("QWidget {\n"
                                           "    background-color: rgb(46, 46, 46);\n"
                                           "}")
-        self.Manual_photos_taker_label = QtWidgets.QLabel(Manual_photos_taker)
+        self.Manual_photos_taker_label = QtWidgets.QLabel(manual_photos_taker)
         self.Manual_photos_taker_label.setGeometry(
             QtCore.QRect(225, 10, 200, 50))
         self.Manual_photos_taker_label.setMinimumSize(QtCore.QSize(200, 50))
@@ -36,7 +36,7 @@ class Ui_Manual_photos_taker(object):
         self.Manual_photos_taker_label.setAlignment(QtCore.Qt.AlignCenter)
         self.Manual_photos_taker_label.setObjectName(
             "Manual_photos_taker_label")
-        self.process_data_btn = QtWidgets.QPushButton(Manual_photos_taker)
+        self.process_data_btn = QtWidgets.QPushButton(manual_photos_taker)
         self.process_data_btn.setGeometry(QtCore.QRect(226, 660, 200, 20))
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -62,7 +62,7 @@ class Ui_Manual_photos_taker(object):
                                             "}")
         self.process_data_btn.setCheckable(False)
         self.process_data_btn.setObjectName("process_data_btn")
-        self.widget = QtWidgets.QWidget(Manual_photos_taker)
+        self.widget = QtWidgets.QWidget(manual_photos_taker)
         self.widget.setGeometry(QtCore.QRect(2, 81, 650, 563))
         self.widget.setObjectName("widget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
@@ -133,26 +133,26 @@ class Ui_Manual_photos_taker(object):
         self.verticalLayout.addWidget(
             self.take_phots_btn, 0, QtCore.Qt.AlignHCenter)
 
-        self.retranslateUi(Manual_photos_taker)
-        QtCore.QMetaObject.connectSlotsByName(Manual_photos_taker)
+        self.retranslateUi(manual_photos_taker)
+        QtCore.QMetaObject.connectSlotsByName(manual_photos_taker)
 
-    def retranslateUi(self, Manual_photos_taker):
+    def retranslateUi(self, manual_photos_taker):
         _translate = QtCore.QCoreApplication.translate
-        Manual_photos_taker.setWindowTitle(_translate(
-            "Manual_photos_taker", "Manual Photos taker"))
+        manual_photos_taker.setWindowTitle(_translate(
+            "manual_photos_taker", "Manual Photos taker"))
         self.Manual_photos_taker_label.setText(_translate(
-            "Manual_photos_taker", "Manual Photos Taker"))
+            "manual_photos_taker", "Manual Photos Taker"))
         self.process_data_btn.setText(_translate(
-            "Manual_photos_taker", "Process Data"))
+            "manual_photos_taker", "Process Data"))
         self.take_phots_btn.setText(_translate(
-            "Manual_photos_taker", "Take a photo"))
+            "manual_photos_taker", "Take a photo"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Manual_photos_taker = QtWidgets.QWidget()
+    manual_photos_taker = QtWidgets.QWidget()
     ui = Ui_Manual_photos_taker()
-    ui.setupUi(Manual_photos_taker)
-    Manual_photos_taker.show()
+    ui.setupUi(manual_photos_taker)
+    manual_photos_taker.show()
     sys.exit(app.exec_())

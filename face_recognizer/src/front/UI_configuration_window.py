@@ -59,9 +59,9 @@ def getOpenFilesAndDirs(parent=None, caption='', directory='',
 
 
 class CustomConfigurationWindow(Ui_Configuration_window):
-    def setupUi(self, Configuration_window):
-        self.Configuration_window = Configuration_window
-        super().setupUi(self.Configuration_window)
+    def setupUi(self, configuration_window):
+        self.configuration_window = configuration_window
+        super().setupUi(self.configuration_window)
 
         self.browse_btn.clicked.connect(self.get_working_directory)
         self.datasets_generation_label = QtWidgets.QLabel(
@@ -73,7 +73,7 @@ class CustomConfigurationWindow(Ui_Configuration_window):
         self.ui = CustomDatasetPreparationWindow(current_working_directory)
         self.ui.setupUi(self.window)
         self.window.show()
-        self.Configuration_window.hide()
+        self.configuration_window.hide()
 
     def configuration_confirmed(self):
         cwd = self.select_working_directory_path_lineEdit.text()
@@ -169,8 +169,8 @@ class CustomConfigurationWindow(Ui_Configuration_window):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Configuration_window = QtWidgets.QMainWindow()
+    configuration_window = QtWidgets.QMainWindow()
     ui = CustomConfigurationWindow()
-    ui.setupUi(Configuration_window)
-    Configuration_window.show()
+    ui.setupUi(configuration_window)
+    configuration_window.show()
     sys.exit(app.exec_())

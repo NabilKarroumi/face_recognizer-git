@@ -12,12 +12,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Configuration_window(object):
-    def setupUi(self, Configuration_window):
-        Configuration_window.setObjectName("Configuration_window")
-        Configuration_window.resize(400, 400)
-        Configuration_window.setMinimumSize(QtCore.QSize(400, 400))
-        Configuration_window.setMaximumSize(QtCore.QSize(400, 400))
-        self.centralwidget = QtWidgets.QWidget(Configuration_window)
+    def setupUi(self, configuration_window):
+        configuration_window.setObjectName("configuration_window")
+        configuration_window.resize(400, 400)
+        configuration_window.setMinimumSize(QtCore.QSize(400, 400))
+        configuration_window.setMaximumSize(QtCore.QSize(400, 400))
+        self.centralwidget = QtWidgets.QWidget(configuration_window)
         self.centralwidget.setMinimumSize(QtCore.QSize(400, 400))
         self.centralwidget.setMaximumSize(QtCore.QSize(400, 400))
         self.centralwidget.setStyleSheet("QWidget {\n"
@@ -175,35 +175,35 @@ class Ui_Configuration_window(object):
         self.confirmation_btn.setObjectName("confirmation_btn")
         self.verticalLayout_2.addWidget(
             self.confirmation_btn, 0, QtCore.Qt.AlignHCenter)
-        Configuration_window.setCentralWidget(self.centralwidget)
+        configuration_window.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Configuration_window)
-        QtCore.QMetaObject.connectSlotsByName(Configuration_window)
+        self.retranslateUi(configuration_window)
+        QtCore.QMetaObject.connectSlotsByName(configuration_window)
 
-    def retranslateUi(self, Configuration_window):
+    def retranslateUi(self, configuration_window):
         _translate = QtCore.QCoreApplication.translate
-        Configuration_window.setWindowTitle(_translate(
-            "Configuration_window", "FaceRecognizer-Configuration"))
+        configuration_window.setWindowTitle(_translate(
+            "configuration_window", "FaceRecognizer-Configuration"))
         self.working_directory_label.setText(_translate(
-            "Configuration_window", "Working directory"))
+            "configuration_window", "Working directory"))
         self.select_working_directory_path_lineEdit.setPlaceholderText(
-            _translate("Configuration_window", "Select your working directory"))
-        self.browse_btn.setText(_translate("Configuration_window", "Browse"))
+            _translate("configuration_window", "Select your working directory"))
+        self.browse_btn.setText(_translate("configuration_window", "Browse"))
         self.datasets_generation_label.setText(_translate(
-            "Configuration_window", "Datasets Generation"))
+            "configuration_window", "Datasets Generation"))
         self.ask_user_label.setText(_translate(
-            "Configuration_window", "Generate new datasets and take new photos ?"))
-        self.comboBox.setItemText(0, _translate("Configuration_window", "Yes"))
-        self.comboBox.setItemText(1, _translate("Configuration_window", "No"))
+            "configuration_window", "Generate new datasets and take new photos ?"))
+        self.comboBox.setItemText(0, _translate("configuration_window", "Yes"))
+        self.comboBox.setItemText(1, _translate("configuration_window", "No"))
         self.confirmation_btn.setText(
-            _translate("Configuration_window", "Confirm"))
+            _translate("configuration_window", "Confirm"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Configuration_window = QtWidgets.QMainWindow()
+    configuration_window = QtWidgets.QMainWindow()
     ui = Ui_Configuration_window()
-    ui.setupUi(Configuration_window)
-    Configuration_window.show()
+    ui.setupUi(configuration_window)
+    configuration_window.show()
     sys.exit(app.exec_())

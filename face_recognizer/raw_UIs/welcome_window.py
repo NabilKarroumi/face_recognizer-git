@@ -12,13 +12,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(200, 200)
-        MainWindow.setMinimumSize(QtCore.QSize(200, 200))
-        MainWindow.setMaximumSize(QtCore.QSize(200, 200))
-        MainWindow.setStyleSheet("")
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+    def setupUi(self, main_window):
+        main_window.setObjectName("main_window")
+        main_window.resize(200, 200)
+        main_window.setMinimumSize(QtCore.QSize(200, 200))
+        main_window.setMaximumSize(QtCore.QSize(200, 200))
+        main_window.setStyleSheet("")
+        self.centralwidget = QtWidgets.QWidget(main_window)
         self.centralwidget.setStyleSheet("QWidget {\n"
                                          "    background-color: rgb(46, 46, 46);\n"
                                          "}")
@@ -56,25 +56,25 @@ class Ui_MainWindow(object):
                                                  "}")
         self.application_start_btn.setObjectName("application_start_btn")
         self.verticalLayout.addWidget(self.application_start_btn)
-        MainWindow.setCentralWidget(self.centralwidget)
+        main_window.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(main_window)
+        QtCore.QMetaObject.connectSlotsByName(main_window)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, main_window):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate(
-            "MainWindow", "FaceRecognizer-Presentation"))
+        main_window.setWindowTitle(_translate(
+            "main_window", "FaceRecognizer-Presentation"))
         self.application_presentation_label.setText(
-            _translate("MainWindow", "Welcome to my application !"))
-        self.application_start_btn.setText(_translate("MainWindow", "Start"))
+            _translate("main_window", "Welcome to my application !"))
+        self.application_start_btn.setText(_translate("main_window", "Start"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    main_window = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(main_window)
+    main_window.show()
     sys.exit(app.exec_())

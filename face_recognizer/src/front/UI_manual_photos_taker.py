@@ -58,9 +58,9 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
         self.names = names
         self.model_name = model_name
 
-    def setupUi(self, Manual_photos_taker):
-        self.Manual_photos_taker = Manual_photos_taker
-        super().setupUi(self.Manual_photos_taker)
+    def setupUi(self, manual_photos_taker):
+        self.manual_photos_taker = manual_photos_taker
+        super().setupUi(self.manual_photos_taker)
 
         self.disply_width = 648
         self.display_height = 480
@@ -175,7 +175,7 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
 
         if buttonReply == QtWidgets.QMessageBox.Ok:
             self.thread.stop()  # stop webcam
-            self.Manual_photos_taker.hide()  # hide window
+            self.manual_photos_taker.hide()  # hide window
             # print('OK for data processing')
             from face_recognizer.src.back.process_data import process_data  # adjime !
             process_data(self.current_working_directory)
@@ -227,9 +227,9 @@ if __name__ == "__main__":
 
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Manual_photos_taker = QtWidgets.QWidget()
+    manual_photos_taker = QtWidgets.QWidget()
     ui = CustomManualPhotosTakerWindow(
         names, current_working_directory, model_name)
-    ui.setupUi(Manual_photos_taker)
-    Manual_photos_taker.show()
+    ui.setupUi(manual_photos_taker)
+    manual_photos_taker.show()
     sys.exit(app.exec_())

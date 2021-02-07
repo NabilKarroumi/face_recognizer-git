@@ -15,9 +15,9 @@ from face_recognizer.src.front.UI_configuration_window import CustomConfiguratio
 
 class CustomWelcomeWindow(Ui_MainWindow):
 
-    def setupUi(self, MainWindow):
-        self.MainWindow = MainWindow
-        super().setupUi(self.MainWindow)
+    def setupUi(self, main_window):
+        self.main_window = main_window
+        super().setupUi(self.main_window)
 
         self.application_start_btn.clicked.connect(
             self.launch_configuration_window_UI)
@@ -26,7 +26,7 @@ class CustomWelcomeWindow(Ui_MainWindow):
         self.window = QtWidgets.QMainWindow()
         self.ui = CustomConfigurationWindow()
         self.ui.setupUi(self.window)
-        self.MainWindow.hide()
+        self.main_window.hide()
         self.window.show()
 
     # def launch_faceRecognizer(self):
@@ -39,7 +39,7 @@ class CustomWelcomeWindow(Ui_MainWindow):
     #     if buttonReply == QtWidgets.QMessageBox.Yes:
     #         print('YES')
     #         # from faceRecognizer import main
-    #         # self.MainWindow.hide()
+    #         # self.main_window.hide()
     #         # main()
     #     elif buttonReply == QtWidgets.QMessageBox.No:
     #         print('NO')
@@ -85,8 +85,8 @@ class CustomWelcomeWindow(Ui_MainWindow):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    main_window = QtWidgets.QMainWindow()
     ui = CustomWelcomeWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(main_window)
+    main_window.show()
     sys.exit(app.exec_())
