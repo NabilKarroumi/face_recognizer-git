@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>200</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>200</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>200</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>FaceRecognizer-Presentation</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+	background-color: rgb(46, 46, 46);
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="application_presentation_label">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(11, 170, 22);
+	border-radius: 10px;
+	font-size: 13px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Welcome to my application !</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="application_start_btn">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(0, 170, 255);
+	border-radius: 10px;
+}
+QPushButton:hover {
+	border: 2px solid rgb(255, 0, 0);
+}
+QPushButton:pressed {
+	background-color: rgb(100, 100, 100);
+}</string>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

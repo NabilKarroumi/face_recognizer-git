@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Manual_photos_taker</class>
+ <widget class="QWidget" name="Manual_photos_taker">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Manual Photos taker</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	background-color: rgb(46, 46, 46);
+}</string>
+  </property>
+  <widget class="QLabel" name="Manual_photos_taker_label">
+   <property name="geometry">
+    <rect>
+     <x>225</x>
+     <y>10</y>
+     <width>200</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>200</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(11, 170, 22);
+	border-radius: 10px;
+	font-size: 13px;
+	justify-content: center;
+}</string>
+   </property>
+   <property name="text">
+    <string>Manual Photos Taker</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="process_data_btn">
+   <property name="geometry">
+    <rect>
+     <x>226</x>
+     <y>660</y>
+     <width>200</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>200</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(0, 170, 255);
+	border-radius: 10px;
+}
+QPushButton:hover {
+	border: 2px solid rgb(255, 0, 0);
+}
+QPushButton:pressed {
+	background-color: rgb(100, 100, 100);
+}</string>
+   </property>
+   <property name="text">
+    <string>Process Data</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>81</y>
+     <width>650</width>
+     <height>563</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="image_container_label">
+      <property name="minimumSize">
+       <size>
+        <width>648</width>
+        <height>480</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>648</width>
+        <height>480</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ffffff;
+	background-color: none;
+	border: 5px solid rgb(255, 170, 0);
+	font-size: 13px;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QComboBox" name="comboBox">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+	background-color: rgb(46, 46, 46);
+	color: #ffffff;
+	border: 2px solid rgb(0, 170, 255);
+	border-radius: 10px;
+}
+QComboBox:hover {
+	border: 2px solid rgb(255, 0, 0);
+}
+QComboBox::drop-down {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+QComboBox QAbstractItemView {
+	color: #ffffff;
+	selection-background-color: rgb(100, 100, 100);
+}
+
+</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QPushButton" name="take_phots_btn">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(0, 170, 255);
+	border-radius: 10px;
+}
+QPushButton:hover {
+	border: 2px solid rgb(255, 0, 0);
+}
+QPushButton:pressed {
+	background-color: rgb(100, 100, 100);
+}</string>
+      </property>
+      <property name="text">
+       <string>Take a photo</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
