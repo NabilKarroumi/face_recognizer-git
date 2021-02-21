@@ -2,12 +2,21 @@
 
 import cv2
 import numpy as np
-# from time import time
 from face_recognizer.src.back.build_model import input_preprocessing
 from tensorflow.keras.models import load_model
 
 
 def main(model_saving_path, classes):
+    """
+        Sets up and Starts the final application.
+
+        :param model_saving_path: path to the model's parameters. At this stage, the model is already trained and is able to recognize faces.
+        :type model_saving_path: str
+
+        :param classes: names of the persons the model should recognize.
+        :type classes: list(str)
+
+    """
 
     # Model
     model = load_model(model_saving_path)
@@ -18,8 +27,7 @@ def main(model_saving_path, classes):
     # previous_time = 0
     # current_time = time()
 
-    face_cascade = cv2.CascadeClassifier(
-        r"D:\Users\KARROUMI Nabil\Desktop\ApprendrePython\openCV\features_for_pattern_detection\haarcascades\haarcascade_frontalface_default.xml")
+    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
     window_name = 'My Window'
     # cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
@@ -94,6 +102,11 @@ def main(model_saving_path, classes):
 if __name__ == "__main__":
 
     import os
+    # print(os.getcwd())
+    # print(os.path.isfile("haarcascade_frontalface_default.xml"))
+    # print("!ls .")
+    # 7/0
+
     from save import read
     current_working_directory = r'D:\\Users\\KARROUMI Nabil\\Desktop\\ApprendrePython\\PROJECTS\\FacesRecognition\\Restructure\\tests'
 

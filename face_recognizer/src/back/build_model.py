@@ -17,7 +17,13 @@ from keras_vggface.utils import preprocess_input
 
 def input_preprocessing(img):
     """
-        VGGFaces inputs should be preprocessed the same way
+        Pre-processes the images before feeding them into the model.
+
+        :param img: the image to pre-process
+        :type img: OpenCv2 instance, basically a np.array()
+
+        :return: the image pre-processed
+        :rtype: OpenCv2 instance, basically a np.array()
     """
     # Ensure that the image size is CFG.IMG_SIZE
     img = cv.resize(img, CFG.IMG_SIZE[:-1])
@@ -39,15 +45,27 @@ def input_preprocessing(img):
 
 
 def train_model(current_working_directory, model_name, verbose=False):
+    """
+        creates and trains the final model used to recognize faces.
+
+        :param current_working_directory: path to the Current Working Directory (CWD).
+        :param current_working_directory: str
+
+        :param model_name: name of the model.
+        :param model_name: str
+
+        :param verbose: Is True, plots the training history
+        :param verbose: bool
+    """
 
     model_builder = BuildModels_CFG(
         current_working_directory, model_name)
 
-    # 1. Create the generator object and we specify how the images are in the VGGFaces2 model
+    # instanciation of the image generator object
     data_generator = ImageDataGenerator(
-        preprocessing_function=input_preprocessing)
+        preprocessing_function=input_preprocessing)  # we specify the pre-processing function which will be applied to all images
 
-    # 2. Training generation
+    # train generator definition
     train_generator = data_generator.flow_from_directory(
         directory=model_builder.training_set,
         target_size=CFG.IMG_SIZE[:2],
@@ -56,7 +74,7 @@ def train_model(current_working_directory, model_name, verbose=False):
         class_mode=model_builder.class_mode
     )
 
-    # 3. Validation generation
+    # validation generator definition
     validation_generator = data_generator.flow_from_directory(
         directory=model_builder.validation_set,
         target_size=CFG.IMG_SIZE[:2],
@@ -65,7 +83,7 @@ def train_model(current_working_directory, model_name, verbose=False):
         class_mode=model_builder.class_mode
     )
 
-    # 3. Testing generation
+    # test generator definition
     test_generator = data_generator.flow_from_directory(
         directory=model_builder.testing_set,
         target_size=CFG.IMG_SIZE[:2],
@@ -75,38 +93,28 @@ def train_model(current_working_directory, model_name, verbose=False):
         shuffle=False
     )
 
-    # imgs, labels = next(train_generator)
-
-    # batch_size = 5
-    # for element in range(batch_size):
-    #     print("image n° " + str(element))
-    #     plt.imshow(imgs[element])
-    #     plt.show()
-
-    #     print("related label : {}".format(labels[element]))
-    #     print("human readable label : {}".format(
-    #         model_builder.classes[np.argmax(labels[element])]))
-
-    # 1. get the original model without the last layer
+    # instanciation of the pre-trained model
     vggface = VGGFace(model='resnet50', input_shape=CFG.IMG_SIZE,
                       include_top=False, pooling='avg')
     # vggface.summary()
 
-    # 2. create a custom model
-    custom_model = Sequential()
+    # customization of the pre-trained model
+    custom_model = Sequential()  # create a new Sequential model
+    # plug in the pre-trained model, without its last layer
     custom_model.add(vggface)
     custom_model.add(
-        Dense(units=model_builder.output_classes_number, activation='softmax'))
+        Dense(units=model_builder.output_classes_number, activation='softmax'))  # add a custom output layer
     # custom_model.summary()
 
-    # Do not train all parameters, only those of the last layer
+    # do not re-train the initial parameters of the pre-trained model
     custom_model.layers[0].trainable = False
     # custom_model.summary()
 
-    # 3. train the model
+    # set the model's compilation parameters
     custom_model.compile(
         optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
+    # fit the model to the data (training phase)
     r = custom_model.fit(x=train_generator, epochs=model_builder.epochs,
                          validation_data=validation_generator, verbose=2)
 
@@ -123,10 +131,7 @@ def train_model(current_working_directory, model_name, verbose=False):
         plt.legend(loc='best')
         plt.show()
 
-        # test_generator.classes
-
         predictions = custom_model.predict(x=test_generator, verbose=0)
-        # print(np.round(predictions))
 
         for element in range(len(predictions)):
             print("human readable real test labels : {}".format(
@@ -135,10 +140,9 @@ def train_model(current_working_directory, model_name, verbose=False):
                 model_builder.classes[np.argmax(predictions[element])]))
             print('\n')
 
-    # Models and classes saving (to make the next use of the tool easier and faster)
+    # save the trained model (basically, its name and parameters)
     create_directory(model_builder.default_model_path)
     if os.path.isfile(model_builder.model_saving_path) is False:
-        # os.makedirs(model_builder.model_saving_path, exist_ok=True)
         custom_model.save(model_builder.model_saving_path)
         write(os.path.join(model_builder.default_model_path,
                            'names_list.txt'), model_builder.classes)

@@ -32,12 +32,28 @@ screensize = user32.GetSystemMetrics(
 
 
 def show_img(img, title):
+    """
+        Displays an image using OpenCv2 built-in functions for
+
+        :param img: image to display
+        :type img: OpenCv2 instance, basically a np.array()
+
+        :param title: title of the image to display.
+        :type title: str
+    """
     cv.imshow(title, img)
     cv.waitKey(1000)
     cv.destroyAllWindows()
 
 
 def show_all_detected_faces(list_of_images):
+    """
+        Displays all images in list_of_images.
+        See show_img function.
+
+        :param list_of_images: list of images to display
+        :type list_of_images: list(np.array())
+    """
     i = 0
     for img in list_of_images:
         show_img(img, 'face nb {}'.format(i))
@@ -45,10 +61,22 @@ def show_all_detected_faces(list_of_images):
 
 
 def resize_img_to_fit_user_screen(img):
+    """
+        Resizes the image to fit monitor's screen (if the image is too big).
+
+        :param img: image to display
+        :type img: OpenCv2 instance, basically a np.array()
+    """
     img = cv.resize(img, (screensize[1]//10, screensize[0]//10))
 
 
 def is_empty(l):
+    """
+        Checks whether a list is empty or not.
+
+        :param l: list of interest
+        :param l: list()
+    """
     if not bool(l):
         return True
     else:
@@ -56,6 +84,22 @@ def is_empty(l):
 
 
 def faces_detector(img_path, detector, img_size=(224, 224), threshold_confidence=0.90):
+    """
+        Detects faces in an image, using MTCNN.
+
+        :param img_path: path to the image of interest.
+        :type img_path: str
+
+        :param detector: detector to use to detect faces
+        :type detector: MTCNN instance
+
+        :param img_size: desired size of image 
+        :type img_size: tuple(int, int)
+
+        :param threshold_confidence: threshold to decide whether a detection is considered as a face or not.
+        :type threshold_confidence: float
+
+    """
     all_detected_faces = []
     detection_status = 'success'
     # detector = mtcnn.MTCNN()

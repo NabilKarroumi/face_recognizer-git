@@ -1,23 +1,24 @@
 # coding: utf-8
 
-# import mtcnn
 import os
-# from save import read
-# from collections import Counter
 
 
 class CFG():
+    """
+        Main configuration class.
+    """
 
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    # BASE_DIR = read('./working_directory.txt')
-
-    # DETECTOR = mtcnn.MTCNN()
+    # threshold to decide whether a MTCNN detection is considered as a face.
     FACE_DETECTION_CONFIDENCE = 0.90
 
+    # images sizes.
     IMG_SIZE = (224, 224, 3)
 
 
 class BuildDatasets_CFG():
+    """
+        Class configuring the creation of datasets (i.e. training, validation and test set).
+    """
 
     def __init__(self,
                  current_working_directory,
@@ -26,6 +27,27 @@ class BuildDatasets_CFG():
                  find_faces=True,
                  generate_datasets=True,
                  copy_data_for_datasets_generation=True):
+        """
+            Dataset instance constructor.
+
+            :param current_working_directory: path the to Current Working Directory (CWD).
+            :param current_working_directory: str
+
+            :param resize_imgs: If True, resizes the images (see face_recognizer.src.back.utils.resize_multiple_images function).
+            :param resize_imgs: bool
+
+            :param rename_imgs: If True, renames the images (see face_recognizer.src.back.utils.rename_multiple_files function).
+            :param rename_imgs: bool
+
+            :param find_faces: If True, finds faces in images (see face_recognizer.src.back.utils.find_all_faces_in_multiple_img function).
+            :param find_faces: bool
+
+            :param generate_datasets: If True, generates training, validation, test sets (see face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator class)
+            :param generate_datasets: bool
+
+            :param copy_data_for_datasets_generation: If True, copies all faces found from 'faces' folder to 'datasets' folder in order to create the final training, validation, test sets later on.
+            :param copy_data_for_datasets_generation: bool
+        """
 
         # Data processing configuration
         self.resize_imgs = resize_imgs
@@ -46,35 +68,21 @@ class BuildDatasets_CFG():
         # Classes definition
         self.classes = os.listdir(self.classes_path)
 
-    # # Variables Definition: To be asked in GUI ??
-    # RESIZE_IMGS = False
-    # RENAME_IMGS = False
-    # FIND_FACES = True
-    # GENERATE_DATASETS = True
-    # COPY_DATA_FOR_DATASET_GENERATION = True
-
-    # All paths needed
-    # DATASETS_PATH = os.path.join(self.BASE_DIR, r'Datasets\family\datasets')
-
-    # CLASSES_PATH = os.path.join(
-    #     self.BASE_DIR, r'Datasets\family\initial_images')
-
-    # CLASSES = os.listdir(CLASSES_PATH)
-
-    # FACES_PATH = os.path.join(self.BASE_DIR, r'Datasets\family\faces')
-
-    # sizes = find_number_of_elements_in_directories(FACES_PATH)
-    # TRAINING_SET_SIZE = set_datasets_sizes(sizes)[0]
-    # VALISATION_SET_SIZE = set_datasets_sizes(sizes)[1]
-    # TESTING_SET_SIZE = set_datasets_sizes(sizes)[2]
-    # CRITICAL_SAMPLES_NUMBER_IN_SMALLEST_CLASS = min(sizes)
-
 
 class BuildModels_CFG(BuildDatasets_CFG):
 
     def __init__(self,
                  current_working_directory,
                  model_name):
+        """
+        Dataset instance constructor.
+
+            : param current_working_directory: path the to Current Working Directory(CWD).
+            : param current_working_directory: str
+
+            : param model_name: name of the model.
+            : param model_name: str
+        """
 
         # Call back BuildDatasets_CFG Constructor to access self.classes
         super().__init__(current_working_directory)
@@ -105,28 +113,3 @@ class BuildModels_CFG(BuildDatasets_CFG):
             self.current_working_directory, 'default')
         self.model_saving_path = os.path.join(
             self.default_model_path, self.model_name + '.h5')
-
-    # # Paths to training/validation datasets
-    # TRAINING_SET = os.path.join(
-    #     self.BASE_DIR, r'./Datasets/family/datasets/train')
-    # VALIDATION_SET = os.path.join(
-    #     self.BASE_DIR, r'./Datasets/family/datasets/validation')
-    # TESTING_SET = os.path.join(
-    #     self.BASE_DIR, r'./Datasets/family/datasets/test')
-
-    # OUTPUT_CLASSES_NUMBER = len(BuildDatasets_CFG.CLASSES)
-
-    # TRAIN_GENERATOR_BATCH_SIZE = 5
-    # VALIDATION_GENERATOR_BATCH_SIZE = 2
-    # TEST_GENERATOR_BATCH_SIZE = 1
-
-    # EPOCHS = 3
-
-    # CLASS_MODE = 'categorical'
-
-    # MODEL_SAVING_PATH = './models/custom_model'
-
-
-# if __name__ == "__main__":
-#     cfg = BuildModels_CFG(os.path.dirname(os.path.abspath(__file__)))
-#     print(cfg.output_classes_number)

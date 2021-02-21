@@ -7,6 +7,12 @@ from face_recognizer.src.back.utils import resize_multiple_images, rename_multip
 
 
 def process_data(current_working_directory):
+    """
+        Processes the data and organizes all folders needed to run the application.
+
+        :param current_working_directory: path to the current working directory.
+        :type current_working_directory: str
+    """
 
     dataset_builder = BuildDatasets_CFG(current_working_directory)
 
