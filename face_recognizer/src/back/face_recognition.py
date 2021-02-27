@@ -11,8 +11,7 @@ mtcnn: https://github.com/ipazc/mtcnn
 # The following library will be usefull to check whether an image is over-sized
 
 
-# from config import CFG
-import cv2 as cv  # to manipulate images
+import cv2 as cv
 import numpy as np
 import ctypes
 user32 = ctypes.windll.user32
@@ -33,7 +32,7 @@ screensize = user32.GetSystemMetrics(
 
 def show_img(img, title):
     """
-        Displays an image using OpenCv2 built-in functions for
+        Displays an image using OpenCv2 built-in functions.
 
         :param img: image to display
         :type img: OpenCv2 instance, basically a np.array()
@@ -49,7 +48,7 @@ def show_img(img, title):
 def show_all_detected_faces(list_of_images):
     """
         Displays all images in list_of_images.
-        See show_img function.
+        See show_img() function.
 
         :param list_of_images: list of images to display
         :type list_of_images: list(np.array())

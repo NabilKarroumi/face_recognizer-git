@@ -75,7 +75,7 @@ class BuildModels_CFG(BuildDatasets_CFG):
                  current_working_directory,
                  model_name):
         """
-        Dataset instance constructor.
+        Model instance constructor.
 
             : param current_working_directory: path the to Current Working Directory(CWD).
             : param current_working_directory: str

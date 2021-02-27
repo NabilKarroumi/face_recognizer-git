@@ -70,7 +70,7 @@ class TrainValidationTestDatasetsGenerator(object):
                 # NOTE:
                 #   "random.sample chooses k elements from a sequence without replacement
                 #   but here, the function is called three times and may
-                #   select a same sample several times and put it in all training, validation and testing datasets
+                #   select a same sample several times and may be put in all three training, validation and testing datasets,
                 #   which can create a bias in our future model !"
 
                 #   However here, before calling back random.sample, we MOVE the samples selected during its previous call

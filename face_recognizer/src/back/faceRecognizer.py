@@ -24,17 +24,14 @@ def main(model_saving_path, classes):
     # Create a Video capture
     video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-    # previous_time = 0
-    # current_time = time()
-
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
     window_name = 'My Window'
+    # cv2.resizeWindow(window_name, 1000, 1000)
     # cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
     # cv2.setWindowProperty(
     #     window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
-    # Loop used to show all images of the video
     while True:
         try:
             # Read the video
@@ -83,11 +80,6 @@ def main(model_saving_path, classes):
             # Quit the video capturing
             if key == ord('q'):
                 break
-
-            # previous_time = current_time
-            # current_time = time()
-            # fps = 1 / (current_time - previous_time)
-            # print('fps: ', fps)
 
         except Exception as e:
             print('Issue found: {}'.format(e))
