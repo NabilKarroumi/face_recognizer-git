@@ -145,12 +145,6 @@ class CustomConfigurationWindow(Ui_Configuration_window):
             self.select_working_directory_path_lineEdit.setText(
                 working_directory[0])
 
-        # QtWidgets.QFileDialog.getExistingDirectory(
-        #     self, "Choose Directory", r"D:\\Users\\KARROUMI Nabil\\Desktop\\ApprendrePython\\PROJECTS")
-
-        # print(working_directory[0])
-        # print(type(working_directory[0]))
-
     def popupWindow(self, window_title, text, informative_text, icon):
         """
             Pops up a window if an issue is detected with the user's settings.
@@ -200,13 +194,3 @@ class CustomConfigurationWindow(Ui_Configuration_window):
         buttonReply = message.exec()
 
         return buttonReply
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    configuration_window = QtWidgets.QMainWindow()
-    ui = CustomConfigurationWindow()
-    ui.setupUi(configuration_window)
-    configuration_window.show()
-    sys.exit(app.exec_())

@@ -292,25 +292,3 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
             print('OK for starting the application')
             from face_recognizer.src.back.faceRecognizer import main
             main(model_saving_path, classes)
-
-
-if __name__ == "__main__":
-
-    from face_recognizer.src.back.utils import read
-
-    current_working_directory = r'D:\\Users\\KARROUMI Nabil\\Desktop\\ApprendrePython\\PROJECTS\\FacesRecognition\\Restructure\\tests'
-
-    names = read(os.path.join(current_working_directory,
-                              os.path.join('default', 'names_list.txt')))
-    # names.sort()
-
-    model_name = 'my_model'
-
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    manual_photos_taker = QtWidgets.QWidget()
-    ui = CustomManualPhotosTakerWindow(
-        names, current_working_directory, model_name)
-    ui.setupUi(manual_photos_taker)
-    manual_photos_taker.show()
-    sys.exit(app.exec_())

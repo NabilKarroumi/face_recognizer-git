@@ -16,12 +16,12 @@ def process_data(current_working_directory):
 
     dataset_builder = BuildDatasets_CFG(current_working_directory)
 
-    # If we need to detect faces in a photos, we'll have to import mtcnn.
-    # The import is done here because it takes a lot of time. Hence, it must be done only if it is required.
+    # start the detection
     if dataset_builder.find_faces:
         import mtcnn
         detector = mtcnn.MTCNN()
 
+    # building of subfolders. 1 subfolder = 1 class = 1 person
     for one_class in dataset_builder.classes:
 
         one_class_path = os.path.join(
@@ -83,8 +83,3 @@ def process_data(current_working_directory):
         move_to_junk = remove_l2_from_l1(l1, l2)
         delete_items_from_directory(
             dataset_builder.datasets_path, move_to_junk)
-
-
-if __name__ == "__main__":
-    cwd = r'D:\\Users\\KARROUMI Nabil\\Desktop\\ApprendrePython\\PROJECTS\\FacesRecognition\\Restructure\\tests'
-    process_data(cwd)

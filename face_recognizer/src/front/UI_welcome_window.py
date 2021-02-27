@@ -32,13 +32,3 @@ class CustomWelcomeWindow(Ui_MainWindow):
         self.ui.setupUi(self.window)
         self.main_window.hide()
         self.window.show()
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    main_window = QtWidgets.QMainWindow()
-    ui = CustomWelcomeWindow()
-    ui.setupUi(main_window)
-    main_window.show()
-    sys.exit(app.exec_())

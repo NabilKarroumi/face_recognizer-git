@@ -93,9 +93,3 @@ class TrainValidationTestDatasetsGenerator(object):
         """
         delete_items_from_directory(
             self.parent_directory, os.listdir(self.parent_directory))
-
-
-if __name__ == "__main__":
-    # pass
-    generator = TrainValidationTestDatasetsGenerator(r'./tests/datasets')
-    generator.generateDatasets(['asmaa', 'nabil'], 3, 1, 1, 5)

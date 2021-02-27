@@ -96,13 +96,3 @@ class CustomDatasetPreparationWindow(Ui_datasets_preparation):
                 self.ui.setupUi(self.automatic_photos_taker)
                 self.automatic_photos_taker.show()
                 self.datasets_preparation.hide()
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    datasets_preparation = QtWidgets.QMainWindow()
-    ui = CustomDatasetPreparationWindow('./tests')
-    ui.setupUi(datasets_preparation)
-    datasets_preparation.show()
-    sys.exit(app.exec_())

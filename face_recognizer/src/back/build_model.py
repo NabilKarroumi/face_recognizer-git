@@ -96,7 +96,6 @@ def train_model(current_working_directory, model_name, verbose=False):
     # instanciation of the pre-trained model
     vggface = VGGFace(model='resnet50', input_shape=CFG.IMG_SIZE,
                       include_top=False, pooling='avg')
-    # vggface.summary()
 
     # customization of the pre-trained model
     custom_model = Sequential()  # create a new Sequential model
@@ -104,11 +103,9 @@ def train_model(current_working_directory, model_name, verbose=False):
     custom_model.add(vggface)
     custom_model.add(
         Dense(units=model_builder.output_classes_number, activation='softmax'))  # add a custom output layer
-    # custom_model.summary()
 
     # do not re-train the initial parameters of the pre-trained model
     custom_model.layers[0].trainable = False
-    # custom_model.summary()
 
     # set the model's compilation parameters
     custom_model.compile(
@@ -148,11 +145,3 @@ def train_model(current_working_directory, model_name, verbose=False):
                            'names_list.txt'), model_builder.classes)
 
     return model_builder.model_saving_path
-
-
-if __name__ == "__main__":
-
-    current_working_directory = './tests'
-    model_name = 'my_model'
-    model_saving_path = train_model(
-        current_working_directory, model_name, verbose=True)

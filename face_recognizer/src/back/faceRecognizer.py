@@ -27,10 +27,6 @@ def main(model_saving_path, classes):
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
     window_name = 'My Window'
-    # cv2.resizeWindow(window_name, 1000, 1000)
-    # cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
-    # cv2.setWindowProperty(
-    #     window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
     while True:
         try:
@@ -89,23 +85,3 @@ def main(model_saving_path, classes):
 
     # Destroy windows
     cv2.destroyAllWindows()
-
-
-if __name__ == "__main__":
-
-    import os
-    # print(os.getcwd())
-    # print(os.path.isfile("haarcascade_frontalface_default.xml"))
-    # print("!ls .")
-    # 7/0
-
-    from save import read
-    current_working_directory = r'D:\\Users\\KARROUMI Nabil\\Desktop\\ApprendrePython\\PROJECTS\\FacesRecognition\\Restructure\\tests'
-
-    names = read(os.path.join(current_working_directory,
-                              os.path.join('default', 'names_list.txt')))
-    # names.sort()
-    model = os.path.join(current_working_directory,
-                         os.path.join('default', 'my_model.h5'))
-
-    main(model, names)
