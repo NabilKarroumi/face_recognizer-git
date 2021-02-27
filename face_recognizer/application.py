@@ -20,7 +20,3 @@ def launch_application():
 
     except Exception as e:
         print('A problem has occured: {}'.format(e))
-
-
-if __name__ == "__main__":
-    launch_application()
