@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.front.UI_configuration_window &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.front.UI_configuration_window</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.front.UI_configuration_window</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.front.UI_prepare_photos_taking</span> <span class="kn">import</span> <span class="n">CustomDatasetPreparationWindow</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.raw_UIs.configuration_window</span> <span class="kn">import</span> <span class="n">Ui_Configuration_window</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.back.utils</span> <span class="kn">import</span> <span class="n">files_in_dir</span><span class="p">,</span> <span class="n">find_specific_file_extension_in_dir</span><span class="p">,</span> <span class="n">read</span>
+
+
+<div class="viewcode-block" id="getOpenFilesAndDirs"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.getOpenFilesAndDirs">[docs]</a><span class="k">def</span> <span class="nf">getOpenFilesAndDirs</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                        <span class="nb">filter</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">initialFilter</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Custom dialog window allowing the user to open a file or a folder. </span>
+
+<span class="sd">        NOTE:</span>
+<span class="sd">            This function as been taken from: https://stackoverflow.com/questions/64336575/select-a-file-or-a-folder-in-qfiledialog-pyqt5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">updateText</span><span class="p">():</span>
+        <span class="c1"># update the contents of the line edit widget with the selected files</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">view</span><span class="o">.</span><span class="n">selectionModel</span><span class="p">()</span><span class="o">.</span><span class="n">selectedRows</span><span class="p">():</span>
+            <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">data</span><span class="p">()))</span>
+        <span class="n">lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">selected</span><span class="p">))</span>
+
+    <span class="n">dialog</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QFileDialog</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">windowTitle</span><span class="o">=</span><span class="n">caption</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">setFileMode</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">ExistingFiles</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">options</span><span class="p">:</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">DontUseNativeDialog</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">directory</span><span class="p">:</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">setDirectory</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="n">setNameFilter</span><span class="p">(</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">initialFilter</span><span class="p">:</span>
+            <span class="n">dialog</span><span class="o">.</span><span class="n">selectNameFilter</span><span class="p">(</span><span class="n">initialFilter</span><span class="p">)</span>
+
+    <span class="c1"># by default, if a directory is opened in file listing mode,</span>
+    <span class="c1"># QFileDialog.accept() shows the contents of that directory, but we</span>
+    <span class="c1"># need to be able to &quot;open&quot; directories as we can do with files, so we</span>
+    <span class="c1"># just override accept() with the default QDialog implementation which</span>
+    <span class="c1"># will just return exec_()</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">accept</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">dialog</span><span class="p">)</span>
+
+    <span class="c1"># there are many item views in a non-native dialog, but the ones displaying</span>
+    <span class="c1"># the actual contents are created inside a QStackedWidget; they are a</span>
+    <span class="c1"># QTreeView and a QListView, and the tree is only used when the</span>
+    <span class="c1"># viewMode is set to QFileDialog.Details, which is not this case</span>
+    <span class="n">stackedWidget</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">findChild</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStackedWidget</span><span class="p">)</span>
+    <span class="n">view</span> <span class="o">=</span> <span class="n">stackedWidget</span><span class="o">.</span><span class="n">findChild</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QListView</span><span class="p">)</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">selectionModel</span><span class="p">()</span><span class="o">.</span><span class="n">selectionChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">updateText</span><span class="p">)</span>
+
+    <span class="n">lineEdit</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">findChild</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLineEdit</span><span class="p">)</span>
+    <span class="c1"># clear the line edit contents whenever the current directory changes</span>
+    <span class="n">dialog</span><span class="o">.</span><span class="n">directoryEntered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+    <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">dialog</span><span class="o">.</span><span class="n">selectedFiles</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="CustomConfigurationWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow">[docs]</a><span class="k">class</span> <span class="nc">CustomConfigurationWindow</span><span class="p">(</span><span class="n">Ui_Configuration_window</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Configuration window Class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CustomConfigurationWindow.setupUi"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow.setupUi">[docs]</a>    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration_window</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Sets up and displays the configuration window.</span>
+
+<span class="sd">            :param configuration_window:</span>
+<span class="sd">            :type configuration_window: QtWidgets.QMainWindow() instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration_window</span> <span class="o">=</span> <span class="n">configuration_window</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration_window</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">browse_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_working_directory</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets_generation_label</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layoutWidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confirmation_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration_confirmed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomConfigurationWindow.launch_datasets_preparation_UI"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow.launch_datasets_preparation_UI">[docs]</a>    <span class="k">def</span> <span class="nf">launch_datasets_preparation_UI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Launches the window allowing the user to take photos.</span>
+
+<span class="sd">            :param current_working_directory: path the to the Current Working Directory (CWD).</span>
+<span class="sd">            :type current_working_directory: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">CustomDatasetPreparationWindow</span><span class="p">(</span><span class="n">current_working_directory</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration_window</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CustomConfigurationWindow.configuration_confirmed"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow.configuration_confirmed">[docs]</a>    <span class="k">def</span> <span class="nf">configuration_confirmed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Processes the settings set by the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cwd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_working_directory_path_lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+        <span class="c1"># First, we chech that a cwd is selected</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span>
+                <span class="c1"># The user does not want to build a new dataset, we check if the cwd selected contains a default folder</span>
+                <span class="c1"># containing the classes and the DL model</span>
+                <span class="n">default</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cwd</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">default</span><span class="p">):</span>
+                    <span class="n">model</span> <span class="o">=</span> <span class="n">find_specific_file_extension_in_dir</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="s1">&#39;.h5&#39;</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">model</span> <span class="ow">and</span> <span class="s1">&#39;names_list.txt&#39;</span> <span class="ow">in</span> <span class="n">files_in_dir</span><span class="p">(</span><span class="n">default</span><span class="p">):</span>
+                        <span class="c1"># print(&#39;OK !&#39;)</span>
+                        <span class="n">classes</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="s1">&#39;names_list.txt&#39;</span><span class="p">))</span>
+
+                        <span class="kn">from</span> <span class="nn">face_recognizer.src.back.faceRecognizer</span> <span class="kn">import</span> <span class="n">main</span>
+                        <span class="n">main</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">model</span><span class="p">),</span> <span class="n">classes</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">buttonReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">popupWindow</span><span class="p">(</span>
+                        <span class="s1">&#39;Error&#39;</span><span class="p">,</span>
+                        <span class="sd">&quot;&quot;&quot;The directory does not contain any trained model.\n</span>
+<span class="sd">                        You have to generate a dataset and train a model first!&quot;&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Please answer &#39;Yes&#39; to the question and press &#39;Confirm&#39;!&quot;</span><span class="p">,</span>
+                        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
+                        <span class="k">pass</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">launch_datasets_preparation_UI</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">select_working_directory_path_lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="CustomConfigurationWindow.get_working_directory"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow.get_working_directory">[docs]</a>    <span class="k">def</span> <span class="nf">get_working_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Allow the user to select the CWD he/she wants.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">working_directory</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># check if the user selected something</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">working_directory</span><span class="p">):</span>
+            <span class="n">working_directory</span> <span class="o">=</span> <span class="n">getOpenFilesAndDirs</span><span class="p">(</span>
+                <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;Choose a working directory&#39;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;D:\Users\KARROUMI Nabil\Desktop\ApprendrePython\PROJECTS\FacesRecognition\Restructure&#39;</span><span class="p">)</span>
+
+        <span class="c1"># make sure that object is a directory</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">working_directory</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_working_directory</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># put the path in the LineEdit widget</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">select_working_directory_path_lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span>
+                <span class="n">working_directory</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="CustomConfigurationWindow.popupWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow.popupWindow">[docs]</a>    <span class="k">def</span> <span class="nf">popupWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_title</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">informative_text</span><span class="p">,</span> <span class="n">icon</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Pops up a window if an issue is detected with the user&#39;s settings.</span>
+
+<span class="sd">            :param window_title: Title of the popup window.</span>
+<span class="sd">            :type window_title: str</span>
+
+<span class="sd">            :param text: text to display in the popup window.</span>
+<span class="sd">            :type text: str</span>
+
+<span class="sd">            :param informative_text: additional text to display.</span>
+<span class="sd">            :type informative_text: str</span>
+
+<span class="sd">            :param icon: type of icon to display.</span>
+<span class="sd">            :type icon: message.setIcon() instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">window_title</span><span class="p">)</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            QWidget {</span>
+<span class="sd">                background-color: rgb(46, 46, 46);</span>
+<span class="sd">                color: #ffffff;</span>
+<span class="sd">            }</span>
+<span class="sd">            QPushButton {</span>
+<span class="sd">                    color: #ffffff;</span>
+<span class="sd">                    background-color: none;</span>
+<span class="sd">                    border: 2px solid rgb(0, 170, 255);</span>
+<span class="sd">                    border-radius: 10px;</span>
+<span class="sd">                    width: 50px;</span>
+<span class="sd">                    height: 20px;</span>
+<span class="sd">            }</span>
+<span class="sd">            QPushButton:hover {</span>
+<span class="sd">                border: 2px solid rgb(255, 0, 0);</span>
+<span class="sd">            }</span>
+<span class="sd">            QPushButton:pressed {</span>
+<span class="sd">                background-color: rgb(100, 100, 100);</span>
+<span class="sd">            }</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">message</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+
+        <span class="n">message</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="n">informative_text</span><span class="p">)</span>
+
+        <span class="n">buttonReply</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">buttonReply</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.back.build_model &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.back.build_model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.back.build_model</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf-8</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">face_recognizer.src.back.config</span> <span class="kn">import</span> <span class="n">CFG</span><span class="p">,</span> <span class="n">BuildModels_CFG</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.back.utils</span> <span class="kn">import</span> <span class="n">create_directory</span><span class="p">,</span> <span class="n">write</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
+
+<span class="kn">from</span> <span class="nn">keras_vggface.vggface</span> <span class="kn">import</span> <span class="n">VGGFace</span>
+<span class="kn">from</span> <span class="nn">keras_vggface.utils</span> <span class="kn">import</span> <span class="n">preprocess_input</span>
+
+
+<div class="viewcode-block" id="input_preprocessing"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.build_model.input_preprocessing">[docs]</a><span class="k">def</span> <span class="nf">input_preprocessing</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pre-processes the images before feeding them into the model.</span>
+
+<span class="sd">        :param img: the image to pre-process</span>
+<span class="sd">        :type img: OpenCv2 instance, basically a np.array()</span>
+
+<span class="sd">        :return: the image pre-processed</span>
+<span class="sd">        :rtype: OpenCv2 instance, basically a np.array()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure that the image size is CFG.IMG_SIZE</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">CFG</span><span class="o">.</span><span class="n">IMG_SIZE</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Ensure that the elemets in the image are float32</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+
+    <span class="c1"># the input layer shape in the model is: (None, 224, 224, 3)</span>
+    <span class="c1"># Our input layer is (224, 224, 3)</span>
+    <span class="c1"># We expand our dimension in the 0-th position (where the None is)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># the pixels values of the face image must be centered on each channel using the mean from the training dataset.</span>
+    <span class="c1"># this mean is known by the preprocess_input function</span>
+    <span class="c1"># version=2 refers to VGGFaces2 and not VGGFaces1</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">img</span></div>
+
+
+<div class="viewcode-block" id="train_model"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.build_model.train_model">[docs]</a><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        creates and trains the final model used to recognize faces.</span>
+
+<span class="sd">        :param current_working_directory: path to the Current Working Directory (CWD).</span>
+<span class="sd">        :param current_working_directory: str</span>
+
+<span class="sd">        :param model_name: name of the model.</span>
+<span class="sd">        :param model_name: str</span>
+
+<span class="sd">        :param verbose: Is True, plots the training history</span>
+<span class="sd">        :param verbose: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">model_builder</span> <span class="o">=</span> <span class="n">BuildModels_CFG</span><span class="p">(</span>
+        <span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span>
+
+    <span class="c1"># instanciation of the image generator object</span>
+    <span class="n">data_generator</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+        <span class="n">preprocessing_function</span><span class="o">=</span><span class="n">input_preprocessing</span><span class="p">)</span>  <span class="c1"># we specify the pre-processing function which will be applied to all images</span>
+
+    <span class="c1"># train generator definition</span>
+    <span class="n">train_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+        <span class="n">directory</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">training_set</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">CFG</span><span class="o">.</span><span class="n">IMG_SIZE</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">classes</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">train_generator_batch_size</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">class_mode</span>
+    <span class="p">)</span>
+
+    <span class="c1"># validation generator definition</span>
+    <span class="n">validation_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+        <span class="n">directory</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">validation_set</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">CFG</span><span class="o">.</span><span class="n">IMG_SIZE</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">classes</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">validation_generator_batch_size</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">class_mode</span>
+    <span class="p">)</span>
+
+    <span class="c1"># test generator definition</span>
+    <span class="n">test_generator</span> <span class="o">=</span> <span class="n">data_generator</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+        <span class="n">directory</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">testing_set</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="n">CFG</span><span class="o">.</span><span class="n">IMG_SIZE</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">classes</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">test_generator_batch_size</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">class_mode</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="c1"># instanciation of the pre-trained model</span>
+    <span class="n">vggface</span> <span class="o">=</span> <span class="n">VGGFace</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;resnet50&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">CFG</span><span class="o">.</span><span class="n">IMG_SIZE</span><span class="p">,</span>
+                      <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pooling</span><span class="o">=</span><span class="s1">&#39;avg&#39;</span><span class="p">)</span>
+
+    <span class="c1"># customization of the pre-trained model</span>
+    <span class="n">custom_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>  <span class="c1"># create a new Sequential model</span>
+    <span class="c1"># plug in the pre-trained model, without its last layer</span>
+    <span class="n">custom_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vggface</span><span class="p">)</span>
+    <span class="n">custom_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">output_classes_number</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>  <span class="c1"># add a custom output layer</span>
+
+    <span class="c1"># do not re-train the initial parameters of the pre-trained model</span>
+    <span class="n">custom_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># set the model&#39;s compilation parameters</span>
+    <span class="n">custom_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+    <span class="c1"># fit the model to the data (training phase)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">custom_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_generator</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">model_builder</span><span class="o">.</span><span class="n">epochs</span><span class="p">,</span>
+                         <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;training loss&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation loss&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;training accuracy&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation accuracy&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">custom_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">test_generator</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;human readable real test labels : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="n">test_generator</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="n">element</span><span class="p">]]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;human readable predicted test labels : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">element</span><span class="p">])]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># save the trained model (basically, its name and parameters)</span>
+    <span class="n">create_directory</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">default_model_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">model_saving_path</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">custom_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">model_saving_path</span><span class="p">)</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_builder</span><span class="o">.</span><span class="n">default_model_path</span><span class="p">,</span>
+                           <span class="s1">&#39;names_list.txt&#39;</span><span class="p">),</span> <span class="n">model_builder</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model_builder</span><span class="o">.</span><span class="n">model_saving_path</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

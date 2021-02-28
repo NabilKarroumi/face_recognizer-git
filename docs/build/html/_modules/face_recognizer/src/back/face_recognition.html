@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.back.face_recognition &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.back.face_recognition</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.back.face_recognition</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">            Links and References </span>
+
+<span class="sd">Tutorial webpage: https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/</span>
+<span class="sd">mtcnn: https://github.com/ipazc/mtcnn</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="n">user32</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span>
+<span class="n">screensize</span> <span class="o">=</span> <span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">),</span> <span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># width, height</span>
+
+
+<div class="viewcode-block" id="show_img"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.face_recognition.show_img">[docs]</a><span class="k">def</span> <span class="nf">show_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Displays an image using OpenCv2 built-in functions.</span>
+
+<span class="sd">        :param img: image to display</span>
+<span class="sd">        :type img: OpenCv2 instance, basically a np.array()</span>
+
+<span class="sd">        :param title: title of the image to display.</span>
+<span class="sd">        :type title: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cv</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">cv</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">cv</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="show_all_detected_faces"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.face_recognition.show_all_detected_faces">[docs]</a><span class="k">def</span> <span class="nf">show_all_detected_faces</span><span class="p">(</span><span class="n">list_of_images</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Displays all images in list_of_images.</span>
+<span class="sd">        See show_img() function.</span>
+
+<span class="sd">        :param list_of_images: list of images to display</span>
+<span class="sd">        :type list_of_images: list(np.array())</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">list_of_images</span><span class="p">:</span>
+        <span class="n">show_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s1">&#39;face nb </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="resize_img_to_fit_user_screen"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.face_recognition.resize_img_to_fit_user_screen">[docs]</a><span class="k">def</span> <span class="nf">resize_img_to_fit_user_screen</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resizes the image to fit monitor&#39;s screen (if the image is too big).</span>
+
+<span class="sd">        :param img: image to display</span>
+<span class="sd">        :type img: OpenCv2 instance, basically a np.array()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">screensize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">10</span><span class="p">,</span> <span class="n">screensize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">10</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="is_empty"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.face_recognition.is_empty">[docs]</a><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks whether a list is empty or not.</span>
+
+<span class="sd">        :param l: list of interest</span>
+<span class="sd">        :param l: list()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="faces_detector"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.face_recognition.faces_detector">[docs]</a><span class="k">def</span> <span class="nf">faces_detector</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">img_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> <span class="n">threshold_confidence</span><span class="o">=</span><span class="mf">0.90</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detects faces in an image, using MTCNN.</span>
+
+<span class="sd">        :param img_path: path to the image of interest.</span>
+<span class="sd">        :type img_path: str</span>
+
+<span class="sd">        :param detector: detector to use to detect faces</span>
+<span class="sd">        :type detector: MTCNN instance</span>
+
+<span class="sd">        :param img_size: desired size of image </span>
+<span class="sd">        :type img_size: tuple(int, int)</span>
+
+<span class="sd">        :param threshold_confidence: threshold to decide whether a detection is considered as a face or not.</span>
+<span class="sd">        :type threshold_confidence: float</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_detected_faces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">detection_status</span> <span class="o">=</span> <span class="s1">&#39;success&#39;</span>
+
+    <span class="c1"># Read the image in color</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">img</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">screensize</span><span class="p">:</span>
+        <span class="n">resize_img_to_fit_user_screen</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="n">detected_faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="c1"># Check whether faces are detected</span>
+    <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">detected_faces</span><span class="p">):</span>
+        <span class="n">detection_status</span> <span class="o">=</span> <span class="s1">&#39;failure&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># At this stage, at least on face is detected</span>
+        <span class="k">for</span> <span class="n">detected_face</span> <span class="ow">in</span> <span class="n">detected_faces</span><span class="p">:</span>
+            <span class="c1"># Check if the confidence is relevant</span>
+            <span class="k">if</span> <span class="n">detected_face</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold_confidence</span><span class="p">:</span>
+                <span class="c1"># the lower-left-corner is returned</span>
+                <span class="n">x_left</span><span class="p">,</span> <span class="n">y_left</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">detected_face</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span>
+                <span class="n">x_right</span><span class="p">,</span> <span class="n">y_right</span> <span class="o">=</span> <span class="n">x_left</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">y_left</span> <span class="o">+</span> <span class="n">height</span>
+
+                <span class="n">face</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">y_left</span><span class="p">:</span><span class="n">y_right</span><span class="p">,</span> <span class="n">x_left</span><span class="p">:</span><span class="n">x_right</span><span class="p">]</span>
+                <span class="n">face</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">img_size</span><span class="p">)</span>
+                <span class="n">all_detected_faces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_detected_faces</span><span class="p">,</span> <span class="n">detection_status</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

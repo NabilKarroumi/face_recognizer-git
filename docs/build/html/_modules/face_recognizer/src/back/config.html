@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.back.config &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.back.config</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.back.config</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf-8</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="CFG"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.config.CFG">[docs]</a><span class="k">class</span> <span class="nc">CFG</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main configuration class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># threshold to decide whether a MTCNN detection is considered as a face.</span>
+    <span class="n">FACE_DETECTION_CONFIDENCE</span> <span class="o">=</span> <span class="mf">0.90</span>
+
+    <span class="c1"># images sizes.</span>
+    <span class="n">IMG_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BuildDatasets_CFG"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.config.BuildDatasets_CFG">[docs]</a><span class="k">class</span> <span class="nc">BuildDatasets_CFG</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class configuring the creation of datasets (i.e. training, validation and test set).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">current_working_directory</span><span class="p">,</span>
+                 <span class="n">resize_imgs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">rename_imgs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">find_faces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">generate_datasets</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">copy_data_for_datasets_generation</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dataset instance constructor.</span>
+
+<span class="sd">            :param current_working_directory: path the to Current Working Directory (CWD).</span>
+<span class="sd">            :param current_working_directory: str</span>
+
+<span class="sd">            :param resize_imgs: If True, resizes the images (see face_recognizer.src.back.utils.resize_multiple_images function).</span>
+<span class="sd">            :param resize_imgs: bool</span>
+
+<span class="sd">            :param rename_imgs: If True, renames the images (see face_recognizer.src.back.utils.rename_multiple_files function).</span>
+<span class="sd">            :param rename_imgs: bool</span>
+
+<span class="sd">            :param find_faces: If True, finds faces in images (see face_recognizer.src.back.utils.find_all_faces_in_multiple_img function).</span>
+<span class="sd">            :param find_faces: bool</span>
+
+<span class="sd">            :param generate_datasets: If True, generates training, validation, test sets (see face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator class)</span>
+<span class="sd">            :param generate_datasets: bool</span>
+
+<span class="sd">            :param copy_data_for_datasets_generation: If True, copies all faces found from &#39;faces&#39; folder to &#39;datasets&#39; folder in order to create the final training, validation, test sets later on.</span>
+<span class="sd">            :param copy_data_for_datasets_generation: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Data processing configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize_imgs</span> <span class="o">=</span> <span class="n">resize_imgs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename_imgs</span> <span class="o">=</span> <span class="n">rename_imgs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">find_faces</span> <span class="o">=</span> <span class="n">find_faces</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_datasets</span> <span class="o">=</span> <span class="n">generate_datasets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_data_for_datasets_generation</span> <span class="o">=</span> <span class="n">copy_data_for_datasets_generation</span>
+
+        <span class="c1"># Paths definition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span> <span class="o">=</span> <span class="n">current_working_directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;datasets&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;initial_images&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faces_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;faces&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Classes definition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BuildModels_CFG"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.config.BuildModels_CFG">[docs]</a><span class="k">class</span> <span class="nc">BuildModels_CFG</span><span class="p">(</span><span class="n">BuildDatasets_CFG</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">current_working_directory</span><span class="p">,</span>
+                 <span class="n">model_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Model instance constructor.</span>
+
+<span class="sd">            : param current_working_directory: path the to Current Working Directory(CWD).</span>
+<span class="sd">            : param current_working_directory: str</span>
+
+<span class="sd">            : param model_name: name of the model.</span>
+<span class="sd">            : param model_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Call back BuildDatasets_CFG Constructor to access self.classes</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">current_working_directory</span><span class="p">)</span>
+
+        <span class="c1"># Paths definition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span> <span class="o">=</span> <span class="n">current_working_directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_set</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;datasets/train&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_set</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;datasets/validation&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">testing_set</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;datasets/test&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Number of output classes</span>
+        <span class="c1"># classes from BuildDatasets_CFG</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_classes_number</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+
+        <span class="c1"># Learning parameters configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_generator_batch_size</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation_generator_batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_generator_batch_size</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_mode</span> <span class="o">=</span> <span class="s1">&#39;categorical&#39;</span>
+
+        <span class="c1"># Models saving path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_saving_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_model_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

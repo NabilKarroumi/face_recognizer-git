@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.front.UI_prepare_photos_taking &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.front.UI_prepare_photos_taking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.front.UI_prepare_photos_taking</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.raw_UIs.prepare_photos_taking</span> <span class="kn">import</span> <span class="n">Ui_datasets_preparation</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.front.UI_automatic_photos_taker</span> <span class="kn">import</span> <span class="n">CustomAutomaticPhotosTakerWindow</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.front.UI_manual_photos_taker</span> <span class="kn">import</span> <span class="n">CustomManualPhotosTakerWindow</span>
+
+
+<div class="viewcode-block" id="get_all_item_in_QListWidget"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.get_all_item_in_QListWidget">[docs]</a><span class="k">def</span> <span class="nf">get_all_item_in_QListWidget</span><span class="p">(</span><span class="n">list_widget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lists all items listed in a QListWidget.</span>
+
+<span class="sd">        :param list_widget: list containing items.</span>
+<span class="sd">        :type list_widget: QtWidgets.QListWidget() instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span>
+        <span class="n">list_widget</span><span class="p">)</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QListWidget</span><span class="p">,</span> <span class="s1">&#39;Make sure the argument is a QListWidget object&#39;</span>
+
+    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">list_widget</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+        <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">list_widget</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">items</span></div>
+
+
+<div class="viewcode-block" id="CustomDatasetPreparationWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow">[docs]</a><span class="k">class</span> <span class="nc">CustomDatasetPreparationWindow</span><span class="p">(</span><span class="n">Ui_datasets_preparation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dataset Preparation window Class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dataset Preparation window Class Constructor.</span>
+
+<span class="sd">            :param current_working_directory: path the to the Current Working Directory (CWD).</span>
+<span class="sd">            :type current_working_directory: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span> <span class="o">=</span> <span class="n">current_working_directory</span>
+
+<div class="viewcode-block" id="CustomDatasetPreparationWindow.setupUi"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow.setupUi">[docs]</a>    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasets_preparation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Sets up and displays the Dataset Preparation window.</span>
+
+<span class="sd">            :param datasets_preparation:</span>
+<span class="sd">            :type datasets_preparation: QtWidgets.QMainWindow() instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets_preparation</span> <span class="o">=</span> <span class="n">datasets_preparation</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets_preparation</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">confirmation_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings_confirmed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">add_name_to_list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_name_from_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomDatasetPreparationWindow.add_name_to_list"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow.add_name_to_list">[docs]</a>    <span class="k">def</span> <span class="nf">add_name_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Adds an item to a QListWidget object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">get_all_item_in_QListWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enter_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">enter_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enter_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enter_name_editline</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="o">.</span><span class="n">sortItems</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CustomDatasetPreparationWindow.remove_name_from_list"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow.remove_name_from_list">[docs]</a>    <span class="k">def</span> <span class="nf">remove_name_from_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Removes an item from a QListWidget object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># only a selected item in the list can be removed</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="o">.</span><span class="n">currentItem</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="o">.</span><span class="n">takeItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="o">.</span><span class="n">currentRow</span><span class="p">())</span></div>
+            <span class="c1"># print(self.ListWidget.count())</span>
+            <span class="c1"># print(self.ListWidget.currentItem())</span>
+            <span class="c1"># print(type(self.ListWidget.currentItem()))</span>
+        <span class="c1"># self.ListWidget.addItem(self.enter_name_editline.text())</span>
+        <span class="c1"># self.enter_name_editline.clear()</span>
+
+<div class="viewcode-block" id="CustomDatasetPreparationWindow.settings_confirmed"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow.settings_confirmed">[docs]</a>    <span class="k">def</span> <span class="nf">settings_confirmed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Processes the settings set by the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">get_all_item_in_QListWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ListWidget</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>  <span class="c1"># At leat one name in the list</span>
+            <span class="c1"># get the combobox content</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Manually&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manual_photos_taker</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">CustomManualPhotosTakerWindow</span><span class="p">(</span>
+                    <span class="n">items</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">manual_photos_taker</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manual_photos_taker</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets_preparation</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">automatic_photos_taker</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">CustomAutomaticPhotosTakerWindow</span><span class="p">(</span>
+                    <span class="n">items</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name_editline</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">automatic_photos_taker</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">automatic_photos_taker</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datasets_preparation</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

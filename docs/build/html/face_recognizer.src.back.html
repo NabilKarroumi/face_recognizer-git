@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.back package &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="face_recognizer.src.front package" href="face_recognizer.src.front.html" />
+    <link rel="prev" title="face_recognizer.src package" href="face_recognizer.src.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">face_recognizer</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="face_recognizer.html">face_recognizer package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="face_recognizer.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="face_recognizer.raw_UIs.html">face_recognizer.raw_UIs package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="face_recognizer.src.html">face_recognizer.src package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="face_recognizer.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="face_recognizer.html#module-face_recognizer.application">face_recognizer.application module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="face_recognizer.html#module-face_recognizer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">face_recognizer</a> &raquo;</li>
+        
+          <li><a href="face_recognizer.html">face_recognizer package</a> &raquo;</li>
+        
+          <li><a href="face_recognizer.src.html">face_recognizer.src package</a> &raquo;</li>
+        
+      <li>face_recognizer.src.back package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/face_recognizer.src.back.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="face-recognizer-src-back-package">
+<h1>face_recognizer.src.back package<a class="headerlink" href="#face-recognizer-src-back-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-face_recognizer.src.back.build_model">
+<span id="face-recognizer-src-back-build-model-module"></span><h2>face_recognizer.src.back.build_model module<a class="headerlink" href="#module-face_recognizer.src.back.build_model" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="face_recognizer.src.back.build_model.input_preprocessing">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.build_model.</span></code><code class="sig-name descname"><span class="pre">input_preprocessing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/build_model.html#input_preprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.build_model.input_preprocessing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pre-processes the images before feeding them into the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> (<em>OpenCv2 instance</em><em>, </em><em>basically a np.array</em><em>(</em><em>)</em>) – the image to pre-process</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the image pre-processed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OpenCv2 instance, basically a np.array()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.build_model.train_model">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.build_model.</span></code><code class="sig-name descname"><span class="pre">train_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/build_model.html#train_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.build_model.train_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>creates and trains the final model used to recognize faces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_working_directory</strong> – path to the Current Working Directory (CWD).</p></li>
+<li><p><strong>current_working_directory</strong> – str</p></li>
+<li><p><strong>model_name</strong> – name of the model.</p></li>
+<li><p><strong>model_name</strong> – str</p></li>
+<li><p><strong>verbose</strong> – Is True, plots the training history</p></li>
+<li><p><strong>verbose</strong> – bool</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back.config">
+<span id="face-recognizer-src-back-config-module"></span><h2>face_recognizer.src.back.config module<a class="headerlink" href="#module-face_recognizer.src.back.config" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="face_recognizer.src.back.config.BuildDatasets_CFG">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.config.</span></code><code class="sig-name descname"><span class="pre">BuildDatasets_CFG</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_faces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_data_for_datasets_generation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/config.html#BuildDatasets_CFG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.config.BuildDatasets_CFG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class configuring the creation of datasets (i.e. training, validation and test set).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.config.BuildModels_CFG">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.config.</span></code><code class="sig-name descname"><span class="pre">BuildModels_CFG</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/config.html#BuildModels_CFG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.config.BuildModels_CFG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#face_recognizer.src.back.config.BuildDatasets_CFG" title="face_recognizer.src.back.config.BuildDatasets_CFG"><code class="xref py py-class docutils literal notranslate"><span class="pre">face_recognizer.src.back.config.BuildDatasets_CFG</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.config.CFG">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.config.</span></code><code class="sig-name descname"><span class="pre">CFG</span></code><a class="reference internal" href="_modules/face_recognizer/src/back/config.html#CFG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.config.CFG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main configuration class.</p>
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.config.CFG.FACE_DETECTION_CONFIDENCE">
+<code class="sig-name descname"><span class="pre">FACE_DETECTION_CONFIDENCE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0.9</span></em><a class="headerlink" href="#face_recognizer.src.back.config.CFG.FACE_DETECTION_CONFIDENCE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.config.CFG.IMG_SIZE">
+<code class="sig-name descname"><span class="pre">IMG_SIZE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">(224,</span> <span class="pre">224,</span> <span class="pre">3)</span></em><a class="headerlink" href="#face_recognizer.src.back.config.CFG.IMG_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back.faceRecognizer">
+<span id="face-recognizer-src-back-facerecognizer-module"></span><h2>face_recognizer.src.back.faceRecognizer module<a class="headerlink" href="#module-face_recognizer.src.back.faceRecognizer" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="face_recognizer.src.back.faceRecognizer.main">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.faceRecognizer.</span></code><code class="sig-name descname"><span class="pre">main</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_saving_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/faceRecognizer.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.faceRecognizer.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up and Starts the final application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_saving_path</strong> (<em>str</em>) – path to the model’s parameters. At this stage, the model is already trained and is able to recognize faces.</p></li>
+<li><p><strong>classes</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – names of the persons the model should recognize.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="face-recognizer-src-back-face-recognition-module">
+<h2>face_recognizer.src.back.face_recognition module<a class="headerlink" href="#face-recognizer-src-back-face-recognition-module" title="Permalink to this headline">¶</a></h2>
+<p>Tutorial webpage: <a class="reference external" href="https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/">https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/</a>
+mtcnn: <a class="reference external" href="https://github.com/ipazc/mtcnn">https://github.com/ipazc/mtcnn</a></p>
+<dl class="py function">
+<dt id="face_recognizer.src.back.face_recognition.faces_detector">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">faces_detector</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(224,</span> <span class="pre">224)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#faces_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.faces_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects faces in an image, using MTCNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_path</strong> (<em>str</em>) – path to the image of interest.</p></li>
+<li><p><strong>detector</strong> (<em>MTCNN instance</em>) – detector to use to detect faces</p></li>
+<li><p><strong>img_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – desired size of image</p></li>
+<li><p><strong>threshold_confidence</strong> (<em>float</em>) – threshold to decide whether a detection is considered as a face or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.face_recognition.is_empty">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">is_empty</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#is_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether a list is empty or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l</strong> – list of interest</p></li>
+<li><p><strong>l</strong> – list()</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.face_recognition.resize_img_to_fit_user_screen">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">resize_img_to_fit_user_screen</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#resize_img_to_fit_user_screen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.resize_img_to_fit_user_screen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes the image to fit monitor’s screen (if the image is too big).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> (<em>OpenCv2 instance</em><em>, </em><em>basically a np.array</em><em>(</em><em>)</em>) – image to display</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.face_recognition.show_all_detected_faces">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">show_all_detected_faces</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_images</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#show_all_detected_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.show_all_detected_faces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays all images in list_of_images.
+See show_img() function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list_of_images</strong> (<em>list</em><em>(</em><em>np.array</em><em>(</em><em>)</em><em>)</em>) – list of images to display</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.face_recognition.show_img">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">show_img</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#show_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.show_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an image using OpenCv2 built-in functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>OpenCv2 instance</em><em>, </em><em>basically a np.array</em><em>(</em><em>)</em>) – image to display</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – title of the image to display.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back.generate_train_validation_test_sets">
+<span id="face-recognizer-src-back-generate-train-validation-test-sets-module"></span><h2>face_recognizer.src.back.generate_train_validation_test_sets module<a class="headerlink" href="#module-face_recognizer.src.back.generate_train_validation_test_sets" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.generate_train_validation_test_sets.</span></code><code class="sig-name descname"><span class="pre">TrainValidationTestDatasetsGenerator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/generate_train_validation_test_sets.html#TrainValidationTestDatasetsGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator.clearDirectoryBeforeBuildingDatasets">
+<code class="sig-name descname"><span class="pre">clearDirectoryBeforeBuildingDatasets</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/generate_train_validation_test_sets.html#TrainValidationTestDatasetsGenerator.clearDirectoryBeforeBuildingDatasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator.clearDirectoryBeforeBuildingDatasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears self.parent_directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator.generateDatasets">
+<code class="sig-name descname"><span class="pre">generateDatasets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_set_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_set_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testing_set_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">critial_samples_number_in_smallest_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/generate_train_validation_test_sets.html#TrainValidationTestDatasetsGenerator.generateDatasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator.generateDatasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates/Builds training, validation and test sets used for training the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>classes</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – all classes of the classifier. In other words, all labels i.e. subdirectories we want in each dataset.</p></li>
+<li><p><strong>training_set_size</strong> (<em>int</em>) – number of samples in the training set</p></li>
+<li><p><strong>validation_set_size</strong> (<em>int</em>) – number of samples in the validation set</p></li>
+<li><p><strong>testing_set_size</strong> (<em>int</em>) – number of samples in the test set</p></li>
+<li><p><strong>critial_samples_number_in_smallest_class</strong> (<em>int</em>) – If all classes have not the same number of samples, the user have to precise the minimum amount of samples contained in the smallest class.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back.process_data">
+<span id="face-recognizer-src-back-process-data-module"></span><h2>face_recognizer.src.back.process_data module<a class="headerlink" href="#module-face_recognizer.src.back.process_data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="face_recognizer.src.back.process_data.process_data">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.process_data.</span></code><code class="sig-name descname"><span class="pre">process_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/process_data.html#process_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.process_data.process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes the data and organizes all folders needed to run the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_working_directory</strong> (<em>str</em>) – path to the current working directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back.utils">
+<span id="face-recognizer-src-back-utils-module"></span><h2>face_recognizer.src.back.utils module<a class="headerlink" href="#module-face_recognizer.src.back.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.copy_files">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">copy_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#copy_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.copy_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies files of src_path in dst_path.
+Note: src_path and dst_path must be folders</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_path</strong> (<em>str</em>) – source path. Folder containing the data to copy.</p></li>
+<li><p><strong>dst_path</strong> (<em>str</em>) – destination path.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.count_files_in_one_directory">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">count_files_in_one_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#count_files_in_one_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.count_files_in_one_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the number of files in the directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dir_path</strong> (<em>str</em>) – path to the directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.count_files_in_subdirectories">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">count_files_in_subdirectories</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_dir_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#count_files_in_subdirectories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.count_files_in_subdirectories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the number of files in all the subdirectory of path_dir_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path_dir_path</strong> (<em>str</em>) – path to the parent directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.create_directory">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">create_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#create_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.create_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new directory at the provided path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.delete_items_from_directory">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">delete_items_from_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#delete_items_from_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.delete_items_from_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all items (files and/or directories) in items_list from the directory located at dir_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p></li>
+<li><p><strong>list_items</strong> (<em>list</em><em>(</em><em>)</em>) – list containing all itmes to be removed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.files_in_dir">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">files_in_dir</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#files_in_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.files_in_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all files contained in the specified directory.txt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.find_all_faces_in_multiple_img">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">find_all_faces_in_multiple_img</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_dir_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#find_all_faces_in_multiple_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.find_all_faces_in_multiple_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all faces contained in several images (contained in a given directory). The detected images are then saved in dst_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_dir_path</strong> (<em>str</em>) – path of the directory containing all images of interest.</p></li>
+<li><p><strong>detector</strong> (<em>MTCNN instance.</em>) – method to use for detecting images.</p></li>
+<li><p><strong>img_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Desired size of images.</p></li>
+<li><p><strong>dst_path</strong> (<em>str</em>) – destination path. Folder containing the faces found.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All images must have been renamed with respect to the convention set in the function ‘rename_multiple_file’ (e.g: ‘name_000i.jpg’)
+The function finds faces ONLY from the image indexed len(dst_path).
+This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.
+If len(dst_path) == 0 (no old data found) the function will still work.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.find_all_faces_in_one_img">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">find_all_faces_in_one_img</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#find_all_faces_in_one_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.find_all_faces_in_one_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all faces contained in one image. The detected images are then saved in dst_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_path</strong> (<em>str</em>) – path of the image of interest.</p></li>
+<li><p><strong>detector</strong> (<em>MTCNN instance.</em>) – method to use for detecting images.</p></li>
+<li><p><strong>img_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Desired size of images.</p></li>
+<li><p><strong>dst_path</strong> (<em>str</em>) – destination path. Folder containing the faces found.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.find_specific_file_extension_in_dir">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">find_specific_file_extension_in_dir</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#find_specific_file_extension_in_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.find_specific_file_extension_in_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds if a given file extension is present in the directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p></li>
+<li><p><strong>extension</strong> (<em>str</em>) – extension of interest</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.read">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">read</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads the variables saved by the function “write”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.remove_l2_from_l1">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">remove_l2_from_l1</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#remove_l2_from_l1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.remove_l2_from_l1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all elements of l1 that are not in l2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l1</strong> (<em>list</em><em>(</em><em>)</em>) – first list</p></li>
+<li><p><strong>l2</strong> (<em>list</em><em>(</em><em>)</em>) – second list</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.rename_multiple_files">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">rename_multiple_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#rename_multiple_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.rename_multiple_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renames files contained in dir_path according to the convention &lt;name_0001.extension&gt;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p></li>
+<li><p><strong>obj</strong> (<em>str</em>) – Prefix to be added to each file. For ex. car, bike, flower …</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.resize_multiple_images">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">resize_multiple_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#resize_multiple_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.resize_multiple_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resizes all images of src_path into img_size shape and save them in dst_path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_path</strong> (<em>str</em>) – source path. Folder containing raw images to be resized.</p></li>
+<li><p><strong>dst_path</strong> (<em>str</em>) – destination path. Folder containing the resized images. It must exists before calling the function.</p></li>
+<li><p><strong>img_size</strong> (<em>tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – Desired size of images.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When src_path and dst_path are the same, images are overwritten</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.set_datasets_sizes">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">set_datasets_sizes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#set_datasets_sizes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.set_datasets_sizes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Splits all data into training, validation and test sets as follows:</dt><dd><p>-&gt; 70% in training
+-&gt; 20% in validation
+-&gt; 10% in test</p>
+<dl class="field-list simple">
+<dt class="field-odd">param list_of_sizes</dt>
+<dd class="field-odd"><p>list containing all sizes of all classes of interests.</p>
+</dd>
+<dt class="field-even">type list_of_sizes</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.write">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function saves variables</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-face_recognizer.src.back">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-face_recognizer.src.back" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="face_recognizer.src.front.html" class="btn btn-neutral float-right" title="face_recognizer.src.front package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="face_recognizer.src.html" class="btn btn-neutral float-left" title="face_recognizer.src package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
