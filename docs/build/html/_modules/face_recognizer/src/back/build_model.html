@@ -151,7 +151,12 @@
            <div itemprop="articleBody">
             
   <h1>Source code for face_recognizer.src.back.build_model</h1><div class="highlight"><pre>
-<span></span><span class="c1"># coding: utf-8</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains all the functions used to build and train a deep learning model capable of identifying people&#39;s faces.</span>
+<span class="sd">Transfert learning has been used to increase the model&#39;s performances.</span>
+<span class="sd">The dataset used for training the models is `VGGFace2 &lt;https://www.arxiv-vanity.com/papers/1710.08092/&gt;`_. However, VGGFace2 has become the name to refer to the pre-trained models which has been trained on the dataset.</span>
+<span class="sd">`ResNet50 &lt;https://iq.opengenus.org/resnet50-architecture/&gt;`_  architecture is used to train the model.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">cv2</span> <span class="k">as</span> <span class="nn">cv</span>

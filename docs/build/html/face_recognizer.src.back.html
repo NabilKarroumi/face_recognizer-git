@@ -180,6 +180,10 @@
 </div>
 <div class="section" id="module-face_recognizer.src.back.build_model">
 <span id="face-recognizer-src-back-build-model-module"></span><h2>face_recognizer.src.back.build_model module<a class="headerlink" href="#module-face_recognizer.src.back.build_model" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all the functions used to build and train a deep learning model capable of identifying people’s faces.
+Transfert learning has been used to increase the model’s performances.
+The dataset used for training the models is <a class="reference external" href="https://www.arxiv-vanity.com/papers/1710.08092/">VGGFace2</a>. However, VGGFace2 has become the name to refer to the pre-trained models which has been trained on the dataset.
+<a class="reference external" href="https://iq.opengenus.org/resnet50-architecture/">ResNet50</a>  architecture is used to train the model.</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.build_model.input_preprocessing">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.build_model.</span></code><code class="sig-name descname"><span class="pre">input_preprocessing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/build_model.html#input_preprocessing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.build_model.input_preprocessing" title="Permalink to this definition">¶</a></dt>
@@ -266,10 +270,10 @@
 </dd></dl>
 
 </div>
-<div class="section" id="face-recognizer-src-back-face-recognition-module">
-<h2>face_recognizer.src.back.face_recognition module<a class="headerlink" href="#face-recognizer-src-back-face-recognition-module" title="Permalink to this headline">¶</a></h2>
-<p>Tutorial webpage: <a class="reference external" href="https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/">https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/</a>
-mtcnn: <a class="reference external" href="https://github.com/ipazc/mtcnn">https://github.com/ipazc/mtcnn</a></p>
+<div class="section" id="module-face_recognizer.src.back.face_recognition">
+<span id="face-recognizer-src-back-face-recognition-module"></span><h2>face_recognizer.src.back.face_recognition module<a class="headerlink" href="#module-face_recognizer.src.back.face_recognition" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions used to detect faces in an image.
+Faces are detected using <a class="reference external" href="https://github.com/ipazc/mtcnn">MTCNN</a> .</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.face_recognition.faces_detector">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.face_recognition.</span></code><code class="sig-name descname"><span class="pre">faces_detector</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(224,</span> <span class="pre">224)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/face_recognition.html#faces_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.face_recognition.faces_detector" title="Permalink to this definition">¶</a></dt>
