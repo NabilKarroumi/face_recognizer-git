@@ -1,4 +1,9 @@
-# coding: utf-8
+"""
+This module contains all the functions used to build and train a deep learning model capable of identifying people's faces.
+Transfert learning has been used to increase the model's performances.
+The dataset used for training the models is `VGGFace2 <https://www.arxiv-vanity.com/papers/1710.08092/>`_. However, VGGFace2 has become the name to refer to the pre-trained models which has been trained on the dataset.
+`ResNet50 <https://iq.opengenus.org/resnet50-architecture/>`_  architecture is used to train the model.
+"""
 
 import os
 import cv2 as cv

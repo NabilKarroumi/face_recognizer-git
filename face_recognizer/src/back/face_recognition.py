@@ -1,9 +1,6 @@
 """ 
-            Links and References 
-
-Tutorial webpage: https://machinelearningmastery.com/how-to-perform-face-recognition-with-vggface2-convolutional-neural-network-in-keras/
-mtcnn: https://github.com/ipazc/mtcnn
-
+This module contains functions used to detect faces in an image.
+Faces are detected using `MTCNN <https://github.com/ipazc/mtcnn>`_ .
 """
 
 import cv2 as cv
