@@ -151,7 +151,9 @@
            <div itemprop="articleBody">
             
   <h1>Source code for face_recognizer.src.back.generate_train_validation_test_sets</h1><div class="highlight"><pre>
-<span></span><span class="c1"># coding: utf-8</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module is used to generate training, validation and test sets for setting the `VGGFace2 &lt;https://www.arxiv-vanity.com/papers/1710.08092/&gt;`_ model up.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">glob</span>
@@ -191,13 +193,11 @@
 
 <span class="sd">            :param critial_samples_number_in_smallest_class: If all classes have not the same number of samples, the user have to precise the minimum amount of samples contained in the smallest class.</span>
 <span class="sd">            :type critial_samples_number_in_smallest_class: int</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1">###################################</span>
-        <span class="c1">############# WARNING #############</span>
-        <span class="c1"># - Choose carefully the size of each dataset, as all classes have necessarily not the same number of samples!</span>
-        <span class="c1"># - If no choice is made by the user, a default one will be applied (see face_recognizer.src.back.utils.set_datasets_sizes function).</span>
-        <span class="c1">###################################</span>
+<span class="sd">            .. warning::</span>
+<span class="sd">                #. Choose carefully the size of each dataset, as all classes have necessarily not the same number of samples!</span>
+<span class="sd">                #. If no choice is made by the user, a default one will be applied (see face_recognizer.src.back.utils.set_datasets_sizes function).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Ensure datasets sizes constraints are respected</span>
         <span class="k">assert</span> <span class="n">critial_samples_number_in_smallest_class</span> <span class="o">&gt;</span> <span class="n">training_set_size</span><span class="p">,</span> <span class="s1">&#39;The size of the training set should be lesser or equal than the maximum size of the smallest class !&#39;</span>

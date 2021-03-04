@@ -151,7 +151,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for face_recognizer.src.back.utils</h1><div class="highlight"><pre>
-<span></span><span class="c1"># coding: utf-8</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains many usefull functions that are often used by multiply other modules. </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -165,6 +168,12 @@
 <div class="viewcode-block" id="write"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.utils.write">[docs]</a><span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">        This function saves variables</span>
+
+<span class="sd">        :param filename: path where to write the data.</span>
+<span class="sd">        :type filename: str</span>
+
+<span class="sd">        :param data: data to save</span>
+<span class="sd">        :type data: </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">pic</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
@@ -173,6 +182,9 @@
 <div class="viewcode-block" id="read"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.utils.read">[docs]</a><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">        This function loads the variables saved by the function &quot;write&quot;</span>
+
+<span class="sd">        :param filename: path where to read the data.</span>
+<span class="sd">        :type filename: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">pic</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -413,11 +425,11 @@
 <span class="sd">        :type dst_path: str</span>
 
 
-<span class="sd">        NOTE:   </span>
-<span class="sd">            All images must have been renamed with respect to the convention set in the function &#39;rename_multiple_file&#39; (e.g: &#39;name_000i.jpg&#39;)</span>
-<span class="sd">            The function finds faces ONLY from the image indexed len(dst_path).</span>
-<span class="sd">            This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.</span>
-<span class="sd">            If len(dst_path) == 0 (no old data found) the function will still work. </span>
+<span class="sd">        .. note::   </span>
+<span class="sd">            | All images must have been renamed with respect to the convention set in the function &#39;rename_multiple_file&#39; (e.g: &#39;name_000i.jpg&#39;).</span>
+<span class="sd">            | The function finds faces ONLY from the image indexed len(dst_path).</span>
+<span class="sd">            | This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.</span>
+<span class="sd">            | If len(dst_path) == 0 (no old data found) the function will still work. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">number_of_faces_already_found</span> <span class="o">=</span> <span class="n">count_files_in_one_directory</span><span class="p">(</span><span class="n">dst_path</span><span class="p">)</span>
@@ -439,9 +451,9 @@
 <div class="viewcode-block" id="set_datasets_sizes"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.utils.set_datasets_sizes">[docs]</a><span class="k">def</span> <span class="nf">set_datasets_sizes</span><span class="p">(</span><span class="n">list_of_sizes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Splits all data into training, validation and test sets as follows:</span>
-<span class="sd">        -&gt; 70% in training</span>
-<span class="sd">        -&gt; 20% in validation</span>
-<span class="sd">        -&gt; 10% in test</span>
+<span class="sd">        * 70% in training</span>
+<span class="sd">        * 20% in validation</span>
+<span class="sd">        * 10% in test</span>
 
 <span class="sd">        :param list_of_sizes: list containing all sizes of all classes of interests.</span>
 <span class="sd">        :type list_of_sizes: str</span>

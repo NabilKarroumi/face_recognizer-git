@@ -1,4 +1,10 @@
-# -*- coding: utf-8 -*-
+"""
+This module implements an interface window that appear immediately after the configuration window (only if the user decides to generate new data).
+Basically, it is a second configuration window that asks the user to:
+* specify how he/she wants to take photos (either manually or automatically).
+* specify the names of all people/classes he/she wants the application to be able to recognize.
+* provide the name of the model to be trained.
+"""
 
 from PyQt5 import QtWidgets
 from face_recognizer.raw_UIs.prepare_photos_taking import Ui_datasets_preparation

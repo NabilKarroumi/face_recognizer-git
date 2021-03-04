@@ -1,4 +1,8 @@
-# coding: utf-8
+"""
+This module is a configuration files.
+It is used to set up all the constant parameters and hyperparameters of the models used.
+It also provides paths to relevant directories.
+"""
 
 import os
 

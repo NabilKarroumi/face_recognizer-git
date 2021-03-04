@@ -222,6 +222,9 @@ The dataset used for training the models is <a class="reference external" href="
 </div>
 <div class="section" id="module-face_recognizer.src.back.config">
 <span id="face-recognizer-src-back-config-module"></span><h2>face_recognizer.src.back.config module<a class="headerlink" href="#module-face_recognizer.src.back.config" title="Permalink to this headline">¶</a></h2>
+<p>This module is a configuration files.
+It is used to set up all the constant parameters and hyperparameters of the models used.
+It also provides paths to relevant directories.</p>
 <dl class="py class">
 <dt id="face_recognizer.src.back.config.BuildDatasets_CFG">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.config.</span></code><code class="sig-name descname"><span class="pre">BuildDatasets_CFG</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_faces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_data_for_datasets_generation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/config.html#BuildDatasets_CFG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.config.BuildDatasets_CFG" title="Permalink to this definition">¶</a></dt>
@@ -255,6 +258,8 @@ The dataset used for training the models is <a class="reference external" href="
 </div>
 <div class="section" id="module-face_recognizer.src.back.faceRecognizer">
 <span id="face-recognizer-src-back-facerecognizer-module"></span><h2>face_recognizer.src.back.faceRecognizer module<a class="headerlink" href="#module-face_recognizer.src.back.faceRecognizer" title="Permalink to this headline">¶</a></h2>
+<p>This module is the implementation of what the user sees of the application when he/she launches it.
+A trained Deep Learning model (<a class="reference external" href="https://www.arxiv-vanity.com/papers/1710.08092/">VGGFace2</a>) is used to recognize faces in real time.</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.faceRecognizer.main">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.faceRecognizer.</span></code><code class="sig-name descname"><span class="pre">main</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_saving_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/faceRecognizer.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.faceRecognizer.main" title="Permalink to this definition">¶</a></dt>
@@ -344,6 +349,7 @@ See show_img() function.</p>
 </div>
 <div class="section" id="module-face_recognizer.src.back.generate_train_validation_test_sets">
 <span id="face-recognizer-src-back-generate-train-validation-test-sets-module"></span><h2>face_recognizer.src.back.generate_train_validation_test_sets module<a class="headerlink" href="#module-face_recognizer.src.back.generate_train_validation_test_sets" title="Permalink to this headline">¶</a></h2>
+<p>This module is used to generate training, validation and test sets for setting the <a class="reference external" href="https://www.arxiv-vanity.com/papers/1710.08092/">VGGFace2</a> model up.</p>
 <dl class="py class">
 <dt id="face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.generate_train_validation_test_sets.</span></code><code class="sig-name descname"><span class="pre">TrainValidationTestDatasetsGenerator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/generate_train_validation_test_sets.html#TrainValidationTestDatasetsGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.generate_train_validation_test_sets.TrainValidationTestDatasetsGenerator" title="Permalink to this definition">¶</a></dt>
@@ -369,6 +375,13 @@ See show_img() function.</p>
 </ul>
 </dd>
 </dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ol class="arabic simple">
+<li><p>Choose carefully the size of each dataset, as all classes have necessarily not the same number of samples!</p></li>
+<li><p>If no choice is made by the user, a default one will be applied (see face_recognizer.src.back.utils.set_datasets_sizes function).</p></li>
+</ol>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -376,6 +389,7 @@ See show_img() function.</p>
 </div>
 <div class="section" id="module-face_recognizer.src.back.process_data">
 <span id="face-recognizer-src-back-process-data-module"></span><h2>face_recognizer.src.back.process_data module<a class="headerlink" href="#module-face_recognizer.src.back.process_data" title="Permalink to this headline">¶</a></h2>
+<p>This module prepares (resizing, renaming, finding faces, creating datasets ..) the data and stores it into several and relevant directories.</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.process_data.process_data">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.process_data.</span></code><code class="sig-name descname"><span class="pre">process_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/process_data.html#process_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.process_data.process_data" title="Permalink to this definition">¶</a></dt>
@@ -390,6 +404,7 @@ See show_img() function.</p>
 </div>
 <div class="section" id="module-face_recognizer.src.back.utils">
 <span id="face-recognizer-src-back-utils-module"></span><h2>face_recognizer.src.back.utils module<a class="headerlink" href="#module-face_recognizer.src.back.utils" title="Permalink to this headline">¶</a></h2>
+<p>This module contains many usefull functions that are often used by multiply other modules.</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.utils.copy_files">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">copy_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#copy_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.copy_files" title="Permalink to this definition">¶</a></dt>
@@ -479,10 +494,12 @@ Note: src_path and dst_path must be folders</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>All images must have been renamed with respect to the convention set in the function ‘rename_multiple_file’ (e.g: ‘name_000i.jpg’)
-The function finds faces ONLY from the image indexed len(dst_path).
-This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.
-If len(dst_path) == 0 (no old data found) the function will still work.</p>
+<div class="line-block">
+<div class="line">All images must have been renamed with respect to the convention set in the function ‘rename_multiple_file’ (e.g: ‘name_000i.jpg’).</div>
+<div class="line">The function finds faces ONLY from the image indexed len(dst_path).</div>
+<div class="line">This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.</div>
+<div class="line">If len(dst_path) == 0 (no old data found) the function will still work.</div>
+</div>
 </div>
 </dd></dl>
 
@@ -520,6 +537,11 @@ If len(dst_path) == 0 (no old data found) the function will still work.</p>
 <dt id="face_recognizer.src.back.utils.read">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">read</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function loads the variables saved by the function “write”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – path where to read the data.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -572,10 +594,12 @@ If len(dst_path) == 0 (no old data found) the function will still work.</p>
 <dl class="py function">
 <dt id="face_recognizer.src.back.utils.set_datasets_sizes">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">set_datasets_sizes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#set_datasets_sizes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.set_datasets_sizes" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>Splits all data into training, validation and test sets as follows:</dt><dd><p>-&gt; 70% in training
--&gt; 20% in validation
--&gt; 10% in test</p>
+<dd><dl>
+<dt>Splits all data into training, validation and test sets as follows:</dt><dd><ul class="simple">
+<li><p>70% in training</p></li>
+<li><p>20% in validation</p></li>
+<li><p>10% in test</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">param list_of_sizes</dt>
 <dd class="field-odd"><p>list containing all sizes of all classes of interests.</p>
@@ -592,11 +616,20 @@ If len(dst_path) == 0 (no old data found) the function will still work.</p>
 <dt id="face_recognizer.src.back.utils.write">
 <code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function saves variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – path where to write the data.</p></li>
+<li><p><strong>data</strong> – data to save</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 <div class="section" id="module-face_recognizer.src.back">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-face_recognizer.src.back" title="Permalink to this headline">¶</a></h2>
+<p>This subpackage contains all the modules implementing the application backend.</p>
 </div>
 </div>
 

@@ -179,6 +179,7 @@
 </div>
 <div class="section" id="module-face_recognizer.src.front.UI_automatic_photos_taker">
 <span id="face-recognizer-src-front-ui-automatic-photos-taker-module"></span><h2>face_recognizer.src.front.UI_automatic_photos_taker module<a class="headerlink" href="#module-face_recognizer.src.front.UI_automatic_photos_taker" title="Permalink to this headline">¶</a></h2>
+<p>This module implementes an interface window that allows the user to create/generate photos (data) automatically.</p>
 <dl class="py class">
 <dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_automatic_photos_taker.</span></code><code class="sig-name descname"><span class="pre">CustomAutomaticPhotosTakerWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow" title="Permalink to this definition">¶</a></dt>
@@ -355,6 +356,9 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </div>
 <div class="section" id="module-face_recognizer.src.front.UI_configuration_window">
 <span id="face-recognizer-src-front-ui-configuration-window-module"></span><h2>face_recognizer.src.front.UI_configuration_window module<a class="headerlink" href="#module-face_recognizer.src.front.UI_configuration_window" title="Permalink to this headline">¶</a></h2>
+<p>This module implementes an interface window that allows the user to:
+* provide the location of the main directory storing all the data, the model and other information.
+* specify whether he/she wants to add new data to the old one (and hence train a new model) or not (launch the application directly).</p>
 <dl class="py class">
 <dt id="face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_configuration_window.</span></code><code class="sig-name descname"><span class="pre">CustomConfigurationWindow</span></code><a class="reference internal" href="_modules/face_recognizer/src/front/UI_configuration_window.html#CustomConfigurationWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_configuration_window.CustomConfigurationWindow" title="Permalink to this definition">¶</a></dt>
@@ -425,6 +429,7 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </div>
 <div class="section" id="module-face_recognizer.src.front.UI_manual_photos_taker">
 <span id="face-recognizer-src-front-ui-manual-photos-taker-module"></span><h2>face_recognizer.src.front.UI_manual_photos_taker module<a class="headerlink" href="#module-face_recognizer.src.front.UI_manual_photos_taker" title="Permalink to this headline">¶</a></h2>
+<p>This module implementes an interface window that allows the user to create/generate photos (data) manually.</p>
 <dl class="py class">
 <dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_manual_photos_taker.</span></code><code class="sig-name descname"><span class="pre">CustomManualPhotosTakerWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow" title="Permalink to this definition">¶</a></dt>
@@ -572,6 +577,11 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </div>
 <div class="section" id="module-face_recognizer.src.front.UI_prepare_photos_taking">
 <span id="face-recognizer-src-front-ui-prepare-photos-taking-module"></span><h2>face_recognizer.src.front.UI_prepare_photos_taking module<a class="headerlink" href="#module-face_recognizer.src.front.UI_prepare_photos_taking" title="Permalink to this headline">¶</a></h2>
+<p>This module implements an interface window that appear immediately after the configuration window (only if the user decides to generate new data).
+Basically, it is a second configuration window that asks the user to:
+* specify how he/she wants to take photos (either manually or automatically).
+* specify the names of all people/classes he/she wants the application to be able to recognize.
+* provide the name of the model to be trained.</p>
 <dl class="py class">
 <dt id="face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_prepare_photos_taking.</span></code><code class="sig-name descname"><span class="pre">CustomDatasetPreparationWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_prepare_photos_taking.html#CustomDatasetPreparationWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_prepare_photos_taking.CustomDatasetPreparationWindow" title="Permalink to this definition">¶</a></dt>
@@ -622,6 +632,12 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </div>
 <div class="section" id="module-face_recognizer.src.front.UI_welcome_window">
 <span id="face-recognizer-src-front-ui-welcome-window-module"></span><h2>face_recognizer.src.front.UI_welcome_window module<a class="headerlink" href="#module-face_recognizer.src.front.UI_welcome_window" title="Permalink to this headline">¶</a></h2>
+<p>This module implements an interface window that appear when the application is launched.
+Basically, it is a simple menu asking the user if he/she wants to start the application or not.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add a cancel button to the window.</p>
+</div>
 <dl class="py class">
 <dt id="face_recognizer.src.front.UI_welcome_window.CustomWelcomeWindow">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_welcome_window.</span></code><code class="sig-name descname"><span class="pre">CustomWelcomeWindow</span></code><a class="reference internal" href="_modules/face_recognizer/src/front/UI_welcome_window.html#CustomWelcomeWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_welcome_window.CustomWelcomeWindow" title="Permalink to this definition">¶</a></dt>
@@ -649,6 +665,7 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </div>
 <div class="section" id="module-face_recognizer.src.front">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-face_recognizer.src.front" title="Permalink to this headline">¶</a></h2>
+<p>This subpackage contains all the modules implementing the application frontend.</p>
 </div>
 </div>
 

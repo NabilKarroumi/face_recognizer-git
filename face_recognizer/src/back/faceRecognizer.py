@@ -1,4 +1,7 @@
-# coding: utf-8
+"""
+This module is the implementation of what the user sees of the application when he/she launches it.
+A trained Deep Learning model (`VGGFace2 <https://www.arxiv-vanity.com/papers/1710.08092/>`_) is used to recognize faces in real time.
+"""
 
 import cv2
 import numpy as np

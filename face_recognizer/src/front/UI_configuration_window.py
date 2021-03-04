@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+"""
+This module implementes an interface window that allows the user to:
+* provide the location of the main directory storing all the data, the model and other information. 
+* specify whether he/she wants to add new data to the old one (and hence train a new model) or not (launch the application directly).
+"""
 
 import os
 from PyQt5 import QtWidgets

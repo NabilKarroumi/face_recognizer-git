@@ -151,7 +151,13 @@
            <div itemprop="articleBody">
             
   <h1>Source code for face_recognizer.src.front.UI_prepare_photos_taking</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implements an interface window that appear immediately after the configuration window (only if the user decides to generate new data).</span>
+<span class="sd">Basically, it is a second configuration window that asks the user to:</span>
+<span class="sd">* specify how he/she wants to take photos (either manually or automatically).</span>
+<span class="sd">* specify the names of all people/classes he/she wants the application to be able to recognize.</span>
+<span class="sd">* provide the name of the model to be trained.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 <span class="kn">from</span> <span class="nn">face_recognizer.raw_UIs.prepare_photos_taking</span> <span class="kn">import</span> <span class="n">Ui_datasets_preparation</span>

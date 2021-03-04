@@ -1,5 +1,6 @@
-# coding: utf-8
-
+"""
+This module prepares (resizing, renaming, finding faces, creating datasets ..) the data and stores it into several and relevant directories.
+"""
 import os
 from face_recognizer.src.back.config import CFG, BuildDatasets_CFG
 from face_recognizer.src.back.generate_train_validation_test_sets import TrainValidationTestDatasetsGenerator

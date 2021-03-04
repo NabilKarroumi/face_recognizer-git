@@ -1,4 +1,6 @@
-# coding: utf-8
+"""
+This module is used to generate training, validation and test sets for setting the `VGGFace2 <https://www.arxiv-vanity.com/papers/1710.08092/>`_ model up.
+"""
 
 import os
 import glob
@@ -38,13 +40,11 @@ class TrainValidationTestDatasetsGenerator(object):
 
             :param critial_samples_number_in_smallest_class: If all classes have not the same number of samples, the user have to precise the minimum amount of samples contained in the smallest class.
             :type critial_samples_number_in_smallest_class: int
-        """
 
-        ###################################
-        ############# WARNING #############
-        # - Choose carefully the size of each dataset, as all classes have necessarily not the same number of samples!
-        # - If no choice is made by the user, a default one will be applied (see face_recognizer.src.back.utils.set_datasets_sizes function).
-        ###################################
+            .. warning::
+                #. Choose carefully the size of each dataset, as all classes have necessarily not the same number of samples!
+                #. If no choice is made by the user, a default one will be applied (see face_recognizer.src.back.utils.set_datasets_sizes function).
+        """
 
         # Ensure datasets sizes constraints are respected
         assert critial_samples_number_in_smallest_class > training_set_size, 'The size of the training set should be lesser or equal than the maximum size of the smallest class !'

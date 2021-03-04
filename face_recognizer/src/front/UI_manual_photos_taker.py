@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+"""
+This module implementes an interface window that allows the user to create/generate photos (data) manually.
+"""
 
 import os
 import sys

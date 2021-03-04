@@ -1,4 +1,7 @@
-# coding: utf-8
+"""
+This module contains many usefull functions that are often used by multiply other modules. 
+"""
+
 
 import shutil
 import re
@@ -12,6 +15,12 @@ from face_recognizer.src.back.face_recognition import faces_detector
 def write(filename, data):
     """ 
         This function saves variables
+
+        :param filename: path where to write the data.
+        :type filename: str
+
+        :param data: data to save
+        :type data: 
     """
     with open(filename, "wb") as f:
         pic.dump(data, f)
@@ -20,6 +29,9 @@ def write(filename, data):
 def read(filename):
     """ 
         This function loads the variables saved by the function "write"
+
+        :param filename: path where to read the data.
+        :type filename: str
     """
     with open(filename, "rb") as f:
         data = pic.load(f)
@@ -260,11 +272,11 @@ def find_all_faces_in_multiple_img(img_dir_path, detector, img_size, dst_path):
         :type dst_path: str
 
 
-        NOTE:   
-            All images must have been renamed with respect to the convention set in the function 'rename_multiple_file' (e.g: 'name_000i.jpg')
-            The function finds faces ONLY from the image indexed len(dst_path).
-            This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.
-            If len(dst_path) == 0 (no old data found) the function will still work. 
+        .. note::   
+            | All images must have been renamed with respect to the convention set in the function 'rename_multiple_file' (e.g: 'name_000i.jpg').
+            | The function finds faces ONLY from the image indexed len(dst_path).
+            | This allows the user to add more when he desired without finding faces in ALL images everytime. The function will focus on new data only.
+            | If len(dst_path) == 0 (no old data found) the function will still work. 
     """
 
     number_of_faces_already_found = count_files_in_one_directory(dst_path)
@@ -286,9 +298,9 @@ def find_all_faces_in_multiple_img(img_dir_path, detector, img_size, dst_path):
 def set_datasets_sizes(list_of_sizes):
     """
     Splits all data into training, validation and test sets as follows:
-        -> 70% in training
-        -> 20% in validation
-        -> 10% in test
+        * 70% in training
+        * 20% in validation
+        * 10% in test
 
         :param list_of_sizes: list containing all sizes of all classes of interests.
         :type list_of_sizes: str
