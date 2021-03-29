@@ -4,3 +4,4 @@ face_recognizer/src/__pycache__
 face_recognizer/src/front/__pycache__
 face_recognizer/src/back/__pycache__
 face_recognizer/test
+venv/
