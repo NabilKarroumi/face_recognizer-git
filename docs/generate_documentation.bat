@@ -4,7 +4,7 @@
 call make clean
 
 @REM Remove old versions of .rst files
-rm ".\source\face*" ".\source\modules.rst"
+del /s ".\source\face*" ".\source\modules.rst"
 
 @REM Re-create .rst files
 sphinx-apidoc -o ./source ../face_recognizer

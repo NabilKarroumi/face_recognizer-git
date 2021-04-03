@@ -188,7 +188,7 @@
 <span class="sd">            Runs the video thread</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_DSHOW</span><span class="p">)</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_flag</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">,</span> <span class="n">cv_img</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
@@ -204,8 +204,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="c1"># shut down capture system</span>
-        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
-        <span class="c1"># cv2.destroyAllWindows()</span>
+        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="VideoThread.stop"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_automatic_photos_taker.VideoThread.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -445,7 +445,6 @@
         <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># stop webcam</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">automatic_photos_taker</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>  <span class="c1"># hide window</span>
-            <span class="c1"># print(&#39;OK for data processing&#39;)</span>
             <span class="kn">from</span> <span class="nn">face_recognizer.src.back.process_data</span> <span class="kn">import</span> <span class="n">process_data</span>  <span class="c1"># adjime !</span>
             <span class="n">process_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">)</span>
             <span class="n">model_saving_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">launch_model_training</span><span class="p">(</span>
@@ -453,7 +452,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">launch_FaceRecognizer</span><span class="p">(</span><span class="n">model_saving_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Abort</span><span class="p">:</span>
             <span class="k">pass</span></div>
-            <span class="c1"># print(&#39;ABORT data processing&#39;)</span>
 
 <div class="viewcode-block" id="CustomAutomaticPhotosTakerWindow.launch_model_training"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_model_training">[docs]</a>    <span class="k">def</span> <span class="nf">launch_model_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -495,7 +493,6 @@
             <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;OK for starting the application&#39;</span><span class="p">)</span>
             <span class="kn">from</span> <span class="nn">face_recognizer.src.back.faceRecognizer</span> <span class="kn">import</span> <span class="n">main</span>
             <span class="n">main</span><span class="p">(</span><span class="n">model_saving_path</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span></div></div>
 </pre></div>

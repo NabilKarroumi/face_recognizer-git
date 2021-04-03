@@ -154,9 +154,6 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This module implements an interface window that appear when the application is launched.</span>
 <span class="sd">    Basically, it is a simple menu asking the user if he/she wants to start the application or not.</span>
-
-<span class="sd">    .. todo::</span>
-<span class="sd">        Add a cancel button to the window.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
@@ -180,7 +177,10 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">application_start_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">launch_configuration_window_UI</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">launch_configuration_window_UI</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_cancel_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">quit_application</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CustomWelcomeWindow.launch_configuration_window_UI"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_welcome_window.CustomWelcomeWindow.launch_configuration_window_UI">[docs]</a>    <span class="k">def</span> <span class="nf">launch_configuration_window_UI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -190,7 +190,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">CustomConfigurationWindow</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CustomWelcomeWindow.quit_application"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_welcome_window.CustomWelcomeWindow.quit_application">[docs]</a>    <span class="k">def</span> <span class="nf">quit_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Quits the application.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

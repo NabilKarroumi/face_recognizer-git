@@ -110,7 +110,6 @@ class CustomConfigurationWindow(Ui_Configuration_window):
                     model = find_specific_file_extension_in_dir(default, '.h5')
 
                     if model and 'names_list.txt' in files_in_dir(default):
-                        # print('OK !')
                         classes = read(os.path.join(default, 'names_list.txt'))
 
                         from face_recognizer.src.back.faceRecognizer import main

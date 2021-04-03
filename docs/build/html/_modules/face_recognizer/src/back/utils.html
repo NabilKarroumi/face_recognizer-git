@@ -301,13 +301,10 @@
             <span class="n">img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">src_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">img_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># img_size = (np.shape(img)[1]//4, np.shape(img)[0]//4)</span>
                 <span class="c1"># this shape should be the same as the one of the window used to take photos</span>
                 <span class="n">img_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
 
             <span class="n">new_img</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img_size</span><span class="p">)</span>
-
-            <span class="c1"># create_directory(dst_path)</span>
 
             <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span>
             <span class="n">cv</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dst_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="n">new_img</span><span class="p">)</span>
@@ -360,11 +357,6 @@
     <span class="n">counter</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">subdirectory</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path_dir_path</span><span class="p">):</span>
-        <span class="c1"># files_list = files_in_dir(os.path.join(</span>
-        <span class="c1">#     path_dir_path, subdirectory))</span>
-
-        <span class="c1"># counter.append(len(files_list))</span>
-
         <span class="n">counter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count_files_in_one_directory</span><span class="p">(</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_dir_path</span><span class="p">,</span> <span class="n">subdirectory</span><span class="p">)))</span>
 

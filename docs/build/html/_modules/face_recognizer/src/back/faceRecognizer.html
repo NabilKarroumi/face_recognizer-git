@@ -180,7 +180,7 @@
     <span class="c1"># Create a Video capture</span>
     <span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_DSHOW</span><span class="p">)</span>
 
-    <span class="n">face_cascade</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s2">&quot;haarcascade_frontalface_default.xml&quot;</span><span class="p">)</span>
+    <span class="n">face_cascade</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">haarcascades</span> <span class="o">+</span> <span class="s2">&quot;haarcascade_frontalface_default.xml&quot;</span><span class="p">)</span>
 
     <span class="n">window_name</span> <span class="o">=</span> <span class="s1">&#39;My Window&#39;</span>
 
@@ -216,7 +216,6 @@
                 <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span>
                     <span class="n">img</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
                     <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
-                    <span class="c1"># org=(y, x + w//2 - text_width//2),</span>
                     <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="n">text_width</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
                     <span class="n">fontFace</span><span class="o">=</span><span class="n">text_font</span><span class="p">,</span>
                     <span class="n">fontScale</span><span class="o">=</span><span class="n">text_font_size</span><span class="p">,</span>
@@ -235,6 +234,7 @@
 
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Issue found: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">break</span>
 
     <span class="c1"># Release the video</span>
     <span class="n">video</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>

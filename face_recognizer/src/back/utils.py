@@ -148,13 +148,10 @@ def resize_multiple_images(src_path, dst_path, img_size=None):
             img = cv.imread(os.path.join(src_path, filename))
 
             if img_size is None:
-                # img_size = (np.shape(img)[1]//4, np.shape(img)[0]//4)
                 # this shape should be the same as the one of the window used to take photos
                 img_size = (640, 480)
 
             new_img = cv.resize(img, img_size)
-
-            # create_directory(dst_path)
 
             filename = filename.split(sep='.')[0]+'.jpg'
             cv.imwrite(os.path.join(dst_path, filename), new_img)
@@ -207,11 +204,6 @@ def count_files_in_subdirectories(path_dir_path):
     counter = []
 
     for subdirectory in os.listdir(path_dir_path):
-        # files_list = files_in_dir(os.path.join(
-        #     path_dir_path, subdirectory))
-
-        # counter.append(len(files_list))
-
         counter.append(count_files_in_one_directory(
             os.path.join(path_dir_path, subdirectory)))
 

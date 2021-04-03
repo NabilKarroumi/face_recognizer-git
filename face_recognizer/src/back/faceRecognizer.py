@@ -63,7 +63,6 @@ def main(model_saving_path, classes):
                 cv2.putText(
                     img=frame,
                     text=text,
-                    # org=(y, x + w//2 - text_width//2),
                     org=(x + w//2 - text_width//2, y),
                     fontFace=text_font,
                     fontScale=text_font_size,

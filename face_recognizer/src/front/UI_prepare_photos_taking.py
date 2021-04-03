@@ -75,11 +75,6 @@ class CustomDatasetPreparationWindow(Ui_datasets_preparation):
         # only a selected item in the list can be removed
         if self.ListWidget.currentItem():
             self.ListWidget.takeItem(self.ListWidget.currentRow())
-            # print(self.ListWidget.count())
-            # print(self.ListWidget.currentItem())
-            # print(type(self.ListWidget.currentItem()))
-        # self.ListWidget.addItem(self.enter_name_editline.text())
-        # self.enter_name_editline.clear()
 
     def settings_confirmed(self):
         """

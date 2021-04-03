@@ -158,8 +158,6 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
 
         cv2.imwrite(photo_path, self.thread.cv_img)
 
-    # def launch_data_processing(self):
-    #     process_data(self.current_working_directory)
 
     def popupWindow(self, window_title, text, icon, informative_text, buttons_number):
         """
@@ -242,7 +240,6 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
         if buttonReply == QtWidgets.QMessageBox.Ok:
             self.thread.stop()  # stop webcam
             self.manual_photos_taker.hide()  # hide window
-            # print('OK for data processing')
             from face_recognizer.src.back.process_data import process_data  # adjime !
             process_data(self.current_working_directory)
             model_saving_path = self.launch_model_training(
@@ -250,7 +247,6 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
             self.launch_FaceRecognizer(model_saving_path, self.names)
         elif buttonReply == QtWidgets.QMessageBox.Abort:
             pass
-            # print('ABORT data processing')
 
     def launch_model_training(self, current_working_directory, model_name):
         """
@@ -292,6 +288,5 @@ class CustomManualPhotosTakerWindow(Ui_Manual_photos_taker):
             1)
 
         if buttonReply == QtWidgets.QMessageBox.Ok:
-            print('OK for starting the application')
             from face_recognizer.src.back.faceRecognizer import main
             main(model_saving_path, classes)

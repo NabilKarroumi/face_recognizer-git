@@ -1,9 +1,6 @@
 """
     This module implements an interface window that appear when the application is launched.
     Basically, it is a simple menu asking the user if he/she wants to start the application or not.
-
-    .. todo::
-        Add a cancel button to the window.
 """
 
 from PyQt5 import QtWidgets
