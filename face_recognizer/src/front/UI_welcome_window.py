@@ -29,6 +29,9 @@ class CustomWelcomeWindow(Ui_MainWindow):
         self.application_start_btn.clicked.connect(
             self.launch_configuration_window_UI)
 
+        self.application_cancel_btn.clicked.connect(
+            self.quit_application)
+
     def launch_configuration_window_UI(self):
         """
             Launches the configuration window.
@@ -38,3 +41,9 @@ class CustomWelcomeWindow(Ui_MainWindow):
         self.ui.setupUi(self.window)
         self.main_window.hide()
         self.window.show()
+
+    def quit_application(self):
+        """
+            Quits the application.
+        """
+        self.main_window.close()

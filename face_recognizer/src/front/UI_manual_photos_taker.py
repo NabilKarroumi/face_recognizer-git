@@ -30,7 +30,7 @@ class VideoThread(QtCore.QThread):
         """
             Runs the video thread
         """
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         while self._run_flag:
             ret, cv_img = cap.read()
             if ret:
@@ -38,6 +38,7 @@ class VideoThread(QtCore.QThread):
                 self.cv_img = cv_img
         # shut down capture system
         cap.release()
+        cv2.destroyAllWindows()
 
     def stop(self):
         """

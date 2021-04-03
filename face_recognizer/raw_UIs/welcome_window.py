@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'welcome_window.ui'
+# Form implementation generated from reading ui file 'D:\Users\KARROUMI Nabil\Desktop\ApprendrePython\PROJECTS\FacesRecognition\face_recognizer-git\face_recognizer\raw_UIs\welcome_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -12,21 +12,24 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, main_window):
-        main_window.setObjectName("main_window")
-        main_window.resize(200, 200)
-        main_window.setMinimumSize(QtCore.QSize(200, 200))
-        main_window.setMaximumSize(QtCore.QSize(200, 200))
-        main_window.setStyleSheet("")
-        self.centralwidget = QtWidgets.QWidget(main_window)
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(200, 200)
+        MainWindow.setMinimumSize(QtCore.QSize(200, 200))
+        MainWindow.setMaximumSize(QtCore.QSize(200, 200))
+        MainWindow.setStyleSheet("")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("QWidget {\n"
                                          "    background-color: rgb(46, 46, 46);\n"
                                          "}")
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setGeometry(QtCore.QRect(10, 10, 181, 181))
+        self.widget.setObjectName("widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.application_presentation_label = QtWidgets.QLabel(
-            self.centralwidget)
+        self.application_presentation_label = QtWidgets.QLabel(self.widget)
         self.application_presentation_label.setStyleSheet("QLabel {\n"
                                                           "    color: #ffffff;\n"
                                                           "    background-color: none;\n"
@@ -39,7 +42,7 @@ class Ui_MainWindow(object):
         self.application_presentation_label.setObjectName(
             "application_presentation_label")
         self.verticalLayout.addWidget(self.application_presentation_label)
-        self.application_start_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.application_start_btn = QtWidgets.QPushButton(self.widget)
         self.application_start_btn.setMinimumSize(QtCore.QSize(0, 0))
         self.application_start_btn.setMaximumSize(QtCore.QSize(200, 20))
         self.application_start_btn.setStyleSheet("QPushButton {\n"
@@ -56,25 +59,43 @@ class Ui_MainWindow(object):
                                                  "}")
         self.application_start_btn.setObjectName("application_start_btn")
         self.verticalLayout.addWidget(self.application_start_btn)
-        main_window.setCentralWidget(self.centralwidget)
+        self.application_cancel_btn = QtWidgets.QPushButton(self.widget)
+        self.application_cancel_btn.setMinimumSize(QtCore.QSize(0, 0))
+        self.application_cancel_btn.setMaximumSize(QtCore.QSize(200, 20))
+        self.application_cancel_btn.setStyleSheet("QPushButton {\n"
+                                                  "    color: #ffffff;\n"
+                                                  "    background-color: none;\n"
+                                                  "    border: 2px solid rgb(0, 170, 255);\n"
+                                                  "    border-radius: 10px;\n"
+                                                  "}\n"
+                                                  "QPushButton:hover {\n"
+                                                  "    border: 2px solid rgb(255, 0, 0);\n"
+                                                  "}\n"
+                                                  "QPushButton:pressed {\n"
+                                                  "    background-color: rgb(100, 100, 100);\n"
+                                                  "}")
+        self.application_cancel_btn.setObjectName("application_cancel_btn")
+        self.verticalLayout.addWidget(self.application_cancel_btn)
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(main_window)
-        QtCore.QMetaObject.connectSlotsByName(main_window)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, main_window):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        main_window.setWindowTitle(_translate(
-            "main_window", "FaceRecognizer-Presentation"))
+        MainWindow.setWindowTitle(_translate(
+            "MainWindow", "FaceRecognizer-Presentation"))
         self.application_presentation_label.setText(
-            _translate("main_window", "Welcome to my application !"))
-        self.application_start_btn.setText(_translate("main_window", "Start"))
+            _translate("MainWindow", "Welcome to my application !"))
+        self.application_start_btn.setText(_translate("MainWindow", "Start"))
+        self.application_cancel_btn.setText(_translate("MainWindow", "Cancel"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    main_window = QtWidgets.QMainWindow()
+    MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(main_window)
-    main_window.show()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())

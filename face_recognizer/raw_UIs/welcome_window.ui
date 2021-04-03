@@ -34,45 +34,54 @@
 	background-color: rgb(46, 46, 46);
 }</string>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="application_presentation_label">
-      <property name="styleSheet">
-       <string notr="true">QLabel {
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>181</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="application_presentation_label">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
 	color: #ffffff;
 	background-color: none;
 	border: 2px solid rgb(11, 170, 22);
 	border-radius: 10px;
 	font-size: 13px;
 }</string>
-      </property>
-      <property name="text">
-       <string>Welcome to my application !</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::PlainText</enum>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="application_start_btn">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
+       </property>
+       <property name="text">
+        <string>Welcome to my application !</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::PlainText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="application_start_btn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
 	color: #ffffff;
 	background-color: none;
 	border: 2px solid rgb(0, 170, 255);
@@ -84,13 +93,47 @@ QPushButton:hover {
 QPushButton:pressed {
 	background-color: rgb(100, 100, 100);
 }</string>
-      </property>
-      <property name="text">
-       <string>Start</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="application_cancel_btn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	color: #ffffff;
+	background-color: none;
+	border: 2px solid rgb(0, 170, 255);
+	border-radius: 10px;
+}
+QPushButton:hover {
+	border: 2px solid rgb(255, 0, 0);
+}
+QPushButton:pressed {
+	background-color: rgb(100, 100, 100);
+}</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>
