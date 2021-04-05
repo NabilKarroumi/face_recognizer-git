@@ -9,6 +9,7 @@ import numpy as np
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from face_recognizer.raw_UIs.automatic_photos_taker import Ui_automatic_photos_taker
+from face_recognizer.src.front.UI_data_processing import CustomDataProcessing
 
 
 class VideoThread(QtCore.QThread):
@@ -127,7 +128,7 @@ class CustomAutomaticPhotosTakerWindow(Ui_automatic_photos_taker):
 
         self.status_label.setText('current status: Not running !')
         self.process_data_btn.clicked.connect(
-            self.launch_data_processing)
+            self.launch_data_processing_UI)
 
         for name in self.names:
             self.comboBox.addItem(name)
@@ -211,134 +212,32 @@ class CustomAutomaticPhotosTakerWindow(Ui_automatic_photos_taker):
         elif self.thread.i > VideoThread.i_max:
             self.status_label.setText('current status: Not Running !')
 
-    def popupWindow(self, window_title, text, icon, informative_text, buttons_number):
+    def launch_data_processing_UI(self):
         """
-            Pops up a window when the user wants to start the images processing phase.
-
-            :param window_title: Title of the popup window.
-            :type window_title: str
-
-            :param text: text to display in the popup window.
-            :type text: str
-
-            :param icon: type of icon to display.
-            :type icon: message.setIcon() instance
-
-            :param informative_text: additional text to display.
-            :type informative_text: str
-
-            :param buttons_number: number of buttons. 
-                NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.
-            :type buttons_number: int
-        """
-        message = QtWidgets.QMessageBox()
-        message.setWindowTitle(window_title)
-        message.setText(text)
-        message.setStyleSheet(
-            """
-            QWidget {
-                background-color: rgb(46, 46, 46); 
-                color: #ffffff;
-            }
-            QPushButton {
-                    color: #ffffff;
-                    background-color: none;
-                    border: 2px solid rgb(0, 170, 255);
-                    border-radius: 10px;
-                    width: 50px;
-                    height: 20px;
-            }
-            QPushButton:hover {
-                border: 2px solid rgb(255, 0, 0);
-            }
-            QPushButton:pressed {
-                background-color: rgb(100, 100, 100);
-            }
-            """)
-
-        message.setIcon(icon)
-
-        if buttons_number == 2:
-            message.setStandardButtons(
-                QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Abort)
-        elif buttons_number == 1:
-            message.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        else:
-            error_dialog = QtWidgets.QErrorMessage()
-            error_dialog.showMessage('Excepted "buttons_number" values: 1 or 2, given: {}'.format(
-                buttons_number))
-            if error_dialog.exec() == 'QtWidgets.QMessageBox.Ok':
-                sys.exit(1)
-
-        message.setInformativeText(informative_text)
-
-        buttonReply = message.exec()
-
-        return buttonReply
-
-    def launch_data_processing(self):
-        """
-            Launches the data processing phase.
-        """
-        buttonReply = self.popupWindow(
-            "Data Processing",
-            """You are about to process the data you have recorded.\n
-            This step is mandatory before feeding and training the FacesRecognizer tool.\n
-            However, the processing phase can take a while.\n""",
-            QtWidgets.QMessageBox.Warning,
-            "If you want to proceed, please push 'Ok'\nIf you want to add more data, push 'Abort'.",
-            2)
-
-        if buttonReply == QtWidgets.QMessageBox.Ok:
-            self.thread.stop()  # stop webcam
-            self.automatic_photos_taker.hide()  # hide window
-            from face_recognizer.src.back.process_data import process_data  # adjime !
-            process_data(self.current_working_directory)
-            model_saving_path = self.launch_model_training(
-                self.current_working_directory, self.model_name)
-            self.launch_FaceRecognizer(model_saving_path, self.names)
-        elif buttonReply == QtWidgets.QMessageBox.Abort:
-            pass
-
-    def launch_model_training(self, current_working_directory, model_name):
-        """
-            Launches the training phase.
+            Launches the window allowing the user to process data.
 
             :param current_working_directory: path the to the Current Working Directory (CWD).
             :type current_working_directory: str
-
-            :param model_name: name of the model.
-            :type model_name: str            
         """
-        buttonReply = self.popupWindow(
-            "Model training",
-            """CONGRATULATIONS, the data have been processed successfully !\n
-            The application 'FaceRecognizer' will know be trained on these data!\n""",
-            QtWidgets.QMessageBox.Information,
-            "Please push 'Ok' to start the training phase\n",
-            1)
+        self.window = QtWidgets.QMainWindow()
+        # self.ui = CustomDataProcessing(current_working_directory)
+        self.ui = CustomDataProcessing(
+            self.names, self.current_working_directory, self.model_name)
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.thread.stop()  # stop webcam
+        self.automatic_photos_taker.hide()  # hide window
 
-        if buttonReply == QtWidgets.QMessageBox.Ok:
-            from face_recognizer.src.back.build_model import train_model
-            return train_model(current_working_directory, model_name)
 
-    def launch_FaceRecognizer(self, model_saving_path, classes):
-        """
-            Launches the application.
-
-            :param model_saving_path: path where to save the model trained.
-            :type model_saving_path: str
-
-            :param classes: classes (i.e. names) of people to recgnize.
-            :type classes: list(str)
-        """
-        buttonReply = self.popupWindow(
-            "FaceRecognizer launcher",
-            "CONGRATULATIONS, the learning phase has been completed successfully !\n",
-            QtWidgets.QMessageBox.Information,
-            "Please push 'Ok' to start the training phase\n",
-            1)
-
-        if buttonReply == QtWidgets.QMessageBox.Ok:
-            from face_recognizer.src.back.faceRecognizer import main
-            main(model_saving_path, classes)
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = CustomAutomaticPhotosTakerWindow(
+        names=['titi', 'toto'],
+        current_working_directory=r'D:\Users\KARROUMI Nabil\Desktop\ApprendrePython\PROJECTS\FacesRecognition\Restructure\new',
+        model_name='mod'
+    )
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

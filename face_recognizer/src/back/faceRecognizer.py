@@ -27,7 +27,8 @@ def main(model_saving_path, classes):
     # Create a Video capture
     video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    face_cascade = cv2.CascadeClassifier(
+        cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
     window_name = 'My Window'
 
@@ -88,3 +89,5 @@ def main(model_saving_path, classes):
 
     # Destroy windows
     cv2.destroyAllWindows()
+
+    exit()
