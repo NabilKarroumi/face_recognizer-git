@@ -111,7 +111,7 @@ class CustomApplicationLauncherWindow(Ui_ApplicationLauncher_window):
 
             print_header_with_specific_layout("STARTING APPLICATION ...")
             time.sleep(1)
-            # self.launch_FaceRecognizer(model_saving_path, self.names)
+            self.launch_FaceRecognizer(model_saving_path, self.names)
 
             self.close_application()
 
