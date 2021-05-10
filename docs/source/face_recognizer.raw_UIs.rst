@@ -4,6 +4,14 @@ face\_recognizer.raw\_UIs package
 Submodules
 ----------
 
+face\_recognizer.raw\_UIs.application\_launcher module
+------------------------------------------------------
+
+.. automodule:: face_recognizer.raw_UIs.application_launcher
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 face\_recognizer.raw\_UIs.automatic\_photos\_taker module
 ---------------------------------------------------------
 

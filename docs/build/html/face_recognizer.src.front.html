@@ -177,6 +177,116 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-face_recognizer.src.front.UI_application_launcher">
+<span id="face-recognizer-src-front-ui-application-launcher-module"></span><h2>face_recognizer.src.front.UI_application_launcher module<a class="headerlink" href="#module-face_recognizer.src.front.UI_application_launcher" title="Permalink to this headline">¶</a></h2>
+<p>This module implementes an interface window that processes the data and trains the classifier.</p>
+<dl class="py class">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.front.UI_application_launcher.</span></code><code class="sig-name descname"><span class="pre">CustomApplicationLauncherWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="face_recognizer.raw_UIs.html#face_recognizer.raw_UIs.application_launcher.Ui_ApplicationLauncher_window" title="face_recognizer.raw_UIs.application_launcher.Ui_ApplicationLauncher_window"><code class="xref py py-class docutils literal notranslate"><span class="pre">face_recognizer.raw_UIs.application_launcher.Ui_ApplicationLauncher_window</span></code></a></p>
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.close_application">
+<code class="sig-name descname"><span class="pre">close_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'success'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.close_application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.close_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the application efficiently (kills all running threads and closes the window).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>run_status</strong> (<em>str</em>) – flag indicating whether the application runs successfully or not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_FaceRecognizer">
+<code class="sig-name descname"><span class="pre">launch_FaceRecognizer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_saving_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.launch_FaceRecognizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_FaceRecognizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_saving_path</strong> (<em>str</em>) – path where to save the model trained.</p></li>
+<li><p><strong>classes</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – classes (i.e. names) of people to recgnize.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_application">
+<code class="sig-name descname"><span class="pre">launch_application</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.launch_application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_data_processing">
+<code class="sig-name descname"><span class="pre">launch_data_processing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.launch_data_processing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_data_processing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the data processing phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_model_training">
+<code class="sig-name descname"><span class="pre">launch_model_training</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.launch_model_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_model_training" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the training phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – name of the model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.popupWindow">
+<code class="sig-name descname"><span class="pre">popupWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">informative_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buttons_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.popupWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.popupWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pops up a window when the user wants to start the images processing phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_title</strong> (<em>str</em>) – Title of the popup window.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – text to display in the popup window.</p></li>
+<li><p><strong>icon</strong> (<em>message.setIcon</em><em>(</em><em>) </em><em>instance</em>) – type of icon to display.</p></li>
+<li><p><strong>informative_text</strong> (<em>str</em>) – additional text to display.</p></li>
+<li><p><strong>buttons_number</strong> (<em>int</em>) – number of buttons.
+NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.setupUi">
+<code class="sig-name descname"><span class="pre">setupUi</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ApplicationLauncher_window</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.setupUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.setupUi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up and displays the Custom Manual Photos Taker window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ApplicationLauncher_window</strong> (<em>QtWidgets.QMainWindow</em><em>(</em><em>) </em><em>instance</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.threads_launcher">
+<code class="sig-name descname"><span class="pre">threads_launcher</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.threads_launcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.threads_launcher" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.trigger_popup">
+<code class="sig-name descname"><span class="pre">trigger_popup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.trigger_popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.trigger_popup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.update_edit_line">
+<code class="sig-name descname"><span class="pre">update_edit_line</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_application_launcher.html#CustomApplicationLauncherWindow.update_edit_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.update_edit_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-face_recognizer.src.front.UI_automatic_photos_taker">
 <span id="face-recognizer-src-front-ui-automatic-photos-taker-module"></span><h2>face_recognizer.src.front.UI_automatic_photos_taker module<a class="headerlink" href="#module-face_recognizer.src.front.UI_automatic_photos_taker" title="Permalink to this headline">¶</a></h2>
 <p>This module implementes an interface window that allows the user to create/generate photos (data) automatically.</p>
@@ -217,53 +327,12 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_FaceRecognizer">
-<code class="sig-name descname"><span class="pre">launch_FaceRecognizer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_saving_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow.launch_FaceRecognizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_FaceRecognizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the application.</p>
+<dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_data_processing_UI">
+<code class="sig-name descname"><span class="pre">launch_data_processing_UI</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow.launch_data_processing_UI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_data_processing_UI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the window allowing the user to process data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model_saving_path</strong> (<em>str</em>) – path where to save the model trained.</p></li>
-<li><p><strong>classes</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – classes (i.e. names) of people to recgnize.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_data_processing">
-<code class="sig-name descname"><span class="pre">launch_data_processing</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow.launch_data_processing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_data_processing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the data processing phase.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_model_training">
-<code class="sig-name descname"><span class="pre">launch_model_training</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow.launch_model_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.launch_model_training" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the training phase.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p></li>
-<li><p><strong>model_name</strong> (<em>str</em>) – name of the model.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.popupWindow">
-<code class="sig-name descname"><span class="pre">popupWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">informative_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buttons_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_automatic_photos_taker.html#CustomAutomaticPhotosTakerWindow.popupWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_automatic_photos_taker.CustomAutomaticPhotosTakerWindow.popupWindow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pops up a window when the user wants to start the images processing phase.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>window_title</strong> (<em>str</em>) – Title of the popup window.</p></li>
-<li><p><strong>text</strong> (<em>str</em>) – text to display in the popup window.</p></li>
-<li><p><strong>icon</strong> (<em>message.setIcon</em><em>(</em><em>) </em><em>instance</em>) – type of icon to display.</p></li>
-<li><p><strong>informative_text</strong> (<em>str</em>) – additional text to display.</p></li>
-<li><p><strong>buttons_number</strong> (<em>int</em>) – number of buttons.
-NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -461,53 +530,12 @@ NOTE: That is an argument used by the programmer that allows him to re-use this 
 </dd></dl>
 
 <dl class="py method">
-<dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_FaceRecognizer">
-<code class="sig-name descname"><span class="pre">launch_FaceRecognizer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_saving_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow.launch_FaceRecognizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_FaceRecognizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the application.</p>
+<dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing_UI">
+<code class="sig-name descname"><span class="pre">launch_data_processing_UI</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow.launch_data_processing_UI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing_UI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the window allowing the user to process data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model_saving_path</strong> (<em>str</em>) – path where to save the model trained.</p></li>
-<li><p><strong>classes</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – classes (i.e. names) of people to recgnize.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing">
-<code class="sig-name descname"><span class="pre">launch_data_processing</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow.launch_data_processing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the data processing phase.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_model_training">
-<code class="sig-name descname"><span class="pre">launch_model_training</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_working_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow.launch_model_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_model_training" title="Permalink to this definition">¶</a></dt>
-<dd><p>Launches the training phase.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p></li>
-<li><p><strong>model_name</strong> (<em>str</em>) – name of the model.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.popupWindow">
-<code class="sig-name descname"><span class="pre">popupWindow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">informative_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buttons_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/front/UI_manual_photos_taker.html#CustomManualPhotosTakerWindow.popupWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.popupWindow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pops up a window when the user wants to start the images processing phase.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>window_title</strong> (<em>str</em>) – Title of the popup window.</p></li>
-<li><p><strong>text</strong> (<em>str</em>) – text to display in the popup window.</p></li>
-<li><p><strong>icon</strong> (<em>message.setIcon</em><em>(</em><em>) </em><em>instance</em>) – type of icon to display.</p></li>
-<li><p><strong>informative_text</strong> (<em>str</em>) – additional text to display.</p></li>
-<li><p><strong>buttons_number</strong> (<em>int</em>) – number of buttons.
-NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>current_working_directory</strong> (<em>str</em>) – path the to the Current Working Directory (CWD).</p>
 </dd>
 </dl>
 </dd></dl>

@@ -161,8 +161,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
-<span class="kn">from</span> <span class="nn">face_recognizer.src.back.process_data</span> <span class="kn">import</span> <span class="n">process_data</span>
 <span class="kn">from</span> <span class="nn">face_recognizer.raw_UIs.manual_photos_taker</span> <span class="kn">import</span> <span class="n">Ui_Manual_photos_taker</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.front.UI_application_launcher</span> <span class="kn">import</span> <span class="n">CustomApplicationLauncherWindow</span>
 
 
 <div class="viewcode-block" id="VideoThread"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.VideoThread">[docs]</a><span class="k">class</span> <span class="nc">VideoThread</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QThread</span><span class="p">):</span>
@@ -238,7 +238,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">disply_width</span> <span class="o">=</span> <span class="mi">648</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">display_height</span> <span class="o">=</span> <span class="mi">480</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">process_data_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">launch_data_processing</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_data_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">launch_data_processing_UI</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -311,138 +311,35 @@
 
         <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">photo_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">cv_img</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="CustomManualPhotosTakerWindow.popupWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.popupWindow">[docs]</a>    <span class="k">def</span> <span class="nf">popupWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_title</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">informative_text</span><span class="p">,</span> <span class="n">buttons_number</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomManualPhotosTakerWindow.launch_data_processing_UI"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing_UI">[docs]</a>    <span class="k">def</span> <span class="nf">launch_data_processing_UI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Pops up a window when the user wants to start the images processing phase.</span>
-
-<span class="sd">            :param window_title: Title of the popup window.</span>
-<span class="sd">            :type window_title: str</span>
-
-<span class="sd">            :param text: text to display in the popup window.</span>
-<span class="sd">            :type text: str</span>
-
-<span class="sd">            :param icon: type of icon to display.</span>
-<span class="sd">            :type icon: message.setIcon() instance</span>
-
-<span class="sd">            :param informative_text: additional text to display.</span>
-<span class="sd">            :type informative_text: str</span>
-
-<span class="sd">            :param buttons_number: number of buttons. </span>
-<span class="sd">                NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.</span>
-<span class="sd">            :type buttons_number: int</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
-        <span class="n">message</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">window_title</span><span class="p">)</span>
-        <span class="n">message</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">message</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            QWidget {</span>
-<span class="sd">                background-color: rgb(46, 46, 46); </span>
-<span class="sd">                color: #ffffff;</span>
-<span class="sd">            }</span>
-<span class="sd">            QPushButton {</span>
-<span class="sd">                    color: #ffffff;</span>
-<span class="sd">                    background-color: none;</span>
-<span class="sd">                    border: 2px solid rgb(0, 170, 255);</span>
-<span class="sd">                    border-radius: 10px;</span>
-<span class="sd">                    width: 50px;</span>
-<span class="sd">                    height: 20px;</span>
-<span class="sd">            }</span>
-<span class="sd">            QPushButton:hover {</span>
-<span class="sd">                border: 2px solid rgb(255, 0, 0);</span>
-<span class="sd">            }</span>
-<span class="sd">            QPushButton:pressed {</span>
-<span class="sd">                background-color: rgb(100, 100, 100);</span>
-<span class="sd">            }</span>
-<span class="sd">            &quot;&quot;&quot;</span><span class="p">)</span>
-
-        <span class="n">message</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">buttons_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">message</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
-                <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Abort</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">buttons_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">message</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">error_dialog</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QErrorMessage</span><span class="p">()</span>
-            <span class="n">error_dialog</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Excepted &quot;buttons_number&quot; values: 1 or 2, given: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">buttons_number</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">error_dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;QtWidgets.QMessageBox.Ok&#39;</span><span class="p">:</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">message</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="n">informative_text</span><span class="p">)</span>
-
-        <span class="n">buttonReply</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">buttonReply</span></div>
-
-<div class="viewcode-block" id="CustomManualPhotosTakerWindow.launch_data_processing"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_data_processing">[docs]</a>    <span class="k">def</span> <span class="nf">launch_data_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Launches the data processing phase.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">buttonReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">popupWindow</span><span class="p">(</span>
-            <span class="s2">&quot;Data Processing&quot;</span><span class="p">,</span>
-            <span class="sd">&quot;&quot;&quot;You are about to process the data you have recorded.\n</span>
-<span class="sd">            This step is mandatory before feeding and training the FacesRecognizer tool.\n</span>
-<span class="sd">            However, the processing phase can take a while.\n&quot;&quot;&quot;</span><span class="p">,</span>
-            <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">,</span>
-            <span class="s2">&quot;If you want to proceed, please push &#39;Ok&#39;</span><span class="se">\n</span><span class="s2">If you want to add more data, push &#39;Abort&#39;.&quot;</span><span class="p">,</span>
-            <span class="mi">2</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># stop webcam</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">manual_photos_taker</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>  <span class="c1"># hide window</span>
-            <span class="kn">from</span> <span class="nn">face_recognizer.src.back.process_data</span> <span class="kn">import</span> <span class="n">process_data</span>  <span class="c1"># adjime !</span>
-            <span class="n">process_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">)</span>
-            <span class="n">model_saving_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">launch_model_training</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">launch_FaceRecognizer</span><span class="p">(</span><span class="n">model_saving_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Abort</span><span class="p">:</span>
-            <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="CustomManualPhotosTakerWindow.launch_model_training"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_model_training">[docs]</a>    <span class="k">def</span> <span class="nf">launch_model_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Launches the training phase.</span>
+<span class="sd">            Launches the window allowing the user to process data.</span>
 
 <span class="sd">            :param current_working_directory: path the to the Current Working Directory (CWD).</span>
 <span class="sd">            :type current_working_directory: str</span>
-
-<span class="sd">            :param model_name: name of the model.</span>
-<span class="sd">            :type model_name: str            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">buttonReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">popupWindow</span><span class="p">(</span>
-            <span class="s2">&quot;Model training&quot;</span><span class="p">,</span>
-            <span class="sd">&quot;&quot;&quot;CONGRATULATIONS, the data have been processed successfully !\n</span>
-<span class="sd">            The application &#39;FaceRecognizer&#39; will know be trained on these data!\n&quot;&quot;&quot;</span><span class="p">,</span>
-            <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Information</span><span class="p">,</span>
-            <span class="s2">&quot;Please push &#39;Ok&#39; to start the training phase</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+        <span class="c1"># self.ui = CustomApplicationLauncherWindow(current_working_directory)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="n">CustomApplicationLauncherWindow</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># stop webcam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">manual_photos_taker</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>  <span class="c1"># hide window</span></div></div>
 
-        <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">face_recognizer.src.back.build_model</span> <span class="kn">import</span> <span class="n">train_model</span>
-            <span class="k">return</span> <span class="n">train_model</span><span class="p">(</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CustomManualPhotosTakerWindow.launch_FaceRecognizer"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_manual_photos_taker.CustomManualPhotosTakerWindow.launch_FaceRecognizer">[docs]</a>    <span class="k">def</span> <span class="nf">launch_FaceRecognizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_saving_path</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Launches the application.</span>
-
-<span class="sd">            :param model_saving_path: path where to save the model trained.</span>
-<span class="sd">            :type model_saving_path: str</span>
-
-<span class="sd">            :param classes: classes (i.e. names) of people to recgnize.</span>
-<span class="sd">            :type classes: list(str)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">buttonReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">popupWindow</span><span class="p">(</span>
-            <span class="s2">&quot;FaceRecognizer launcher&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;CONGRATULATIONS, the learning phase has been completed successfully !</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Information</span><span class="p">,</span>
-            <span class="s2">&quot;Please push &#39;Ok&#39; to start the training phase</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="mi">1</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">face_recognizer.src.back.faceRecognizer</span> <span class="kn">import</span> <span class="n">main</span>
-            <span class="n">main</span><span class="p">(</span><span class="n">model_saving_path</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span></div></div>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">MainWindow</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+    <span class="n">ui</span> <span class="o">=</span> <span class="n">CustomManualPhotosTakerWindow</span><span class="p">(</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;titi&#39;</span><span class="p">,</span> <span class="s1">&#39;toto&#39;</span><span class="p">],</span>
+        <span class="n">current_working_directory</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;D:\Users\KARROUMI Nabil\Desktop\ApprendrePython\PROJECTS\FacesRecognition\Restructure\new&#39;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;mod&#39;</span>
+    <span class="p">)</span>
+    <span class="n">ui</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">)</span>
+    <span class="n">MainWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
 </pre></div>
 
            </div>

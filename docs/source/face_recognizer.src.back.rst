@@ -52,6 +52,14 @@ face\_recognizer.src.back.process\_data module
    :undoc-members:
    :show-inheritance:
 
+face\_recognizer.src.back.pyqt\_multithreadings\_management module
+------------------------------------------------------------------
+
+.. automodule:: face_recognizer.src.back.pyqt_multithreadings_management
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 face\_recognizer.src.back.utils module
 --------------------------------------
 

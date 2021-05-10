@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>face_recognizer.src.front.UI_application_launcher &mdash; face_recognizer 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> face_recognizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">face_recognizer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">face_recognizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>face_recognizer.src.front.UI_application_launcher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for face_recognizer.src.front.UI_application_launcher</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implementes an interface window that processes the data and trains the classifier.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.raw_UIs.application_launcher</span> <span class="kn">import</span> <span class="n">Ui_ApplicationLauncher_window</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.back.utils</span> <span class="kn">import</span> <span class="n">print_header_with_specific_layout</span>
+<span class="kn">from</span> <span class="nn">face_recognizer.src.back.pyqt_multithreadings_management</span> <span class="kn">import</span> <span class="n">CustomStreamWriter</span><span class="p">,</span> <span class="n">StdoutListener</span><span class="p">,</span> <span class="n">LongRunningFunction</span>
+
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow">[docs]</a><span class="k">class</span> <span class="nc">CustomApplicationLauncherWindow</span><span class="p">(</span><span class="n">Ui_ApplicationLauncher_window</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Custom Data Processing window Class constructor.</span>
+
+<span class="sd">                :param names: list containing the different face labels</span>
+<span class="sd">                :type: list(str)</span>
+
+<span class="sd">                :param current_working_directory: path the to the Current Working Directory (CWD).</span>
+<span class="sd">                :type current_working_directory: str</span>
+
+<span class="sd">                :param model_name: name of the model.</span>
+<span class="sd">                :type model_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span> <span class="o">=</span> <span class="n">current_working_directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_images_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="s1">&#39;initial_images&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="n">names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.setupUi"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.setupUi">[docs]</a>    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ApplicationLauncher_window</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Sets up and displays the Custom Manual Photos Taker window.</span>
+
+<span class="sd">                :param ApplicationLauncher_window:</span>
+<span class="sd">                :type ApplicationLauncher_window: QtWidgets.QMainWindow() instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ApplicationLauncher_window</span> <span class="o">=</span> <span class="n">ApplicationLauncher_window</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ApplicationLauncher_window</span><span class="p">)</span>
+
+        <span class="c1"># Create a QtCore.QThreadPoolobject. It creates and manages different threads of class QtCore.QRunnable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QThreadPool</span><span class="p">()</span>
+        <span class="c1"># Show how many threads can be handled depending on computer</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multithreading with maximum </span><span class="si">%d</span><span class="s2"> threads&quot;</span> <span class="o">%</span>
+              <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span><span class="o">.</span><span class="n">maxThreadCount</span><span class="p">())</span>
+
+        <span class="c1"># launch processing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trigger_popup</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.trigger_popup"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.trigger_popup">[docs]</a>    <span class="k">def</span> <span class="nf">trigger_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">buttonReply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">popupWindow</span><span class="p">(</span>
+            <span class="n">window_title</span><span class="o">=</span><span class="s2">&quot;Start Application Setup&quot;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;You are about to launch the Application.</span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">                Before it starts though, the data you provided will be processed and a custom Deep Learning Model will be trained.</span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">                These steps may take a while.</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">,</span>
+            <span class="n">informative_text</span><span class="o">=</span><span class="s2">&quot;If you want to proceed, please push &#39;Ok&#39;</span><span class="se">\n</span><span class="s2">Otherwise, push &#39;Abort&#39;.&quot;</span><span class="p">,</span>
+            <span class="n">buttons_number</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">threads_launcher</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">buttonReply</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Abort</span><span class="p">:</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.threads_launcher"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.threads_launcher">[docs]</a>    <span class="k">def</span> <span class="nf">threads_launcher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Create a queue</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="c1"># Redirect sys.stdout to the queue through CustomStreamWriter</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">CustomStreamWriter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">CustomStreamWriter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Instanciating the long-running function (the function to be run in a separate thread is self.launch_application)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">long_running_function</span> <span class="o">=</span> <span class="n">LongRunningFunction</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">launch_application</span><span class="p">)</span>
+
+        <span class="c1"># Create a new thread that will deal execute this function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">long_running_function</span><span class="p">)</span>
+
+        <span class="c1"># Instanciating the Listener for output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stdout_listener</span> <span class="o">=</span> <span class="n">StdoutListener</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="c1"># Connect the emmited signal to a function that will update the edit_line (this function is self.update_edit_line)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stdout_listener</span><span class="o">.</span><span class="n">signals</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_edit_line</span><span class="p">)</span>
+        <span class="c1"># Create a new thread that will handle the listening phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdout_listener</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.update_edit_line"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.update_edit_line">[docs]</a>    <span class="k">def</span> <span class="nf">update_edit_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edit_line</span><span class="o">.</span><span class="n">moveCursor</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QTextCursor</span><span class="o">.</span><span class="n">End</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edit_line</span><span class="o">.</span><span class="n">insertHtml</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.launch_application"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_application">[docs]</a>    <span class="k">def</span> <span class="nf">launch_application</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Launches the application.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">print_header_with_specific_layout</span><span class="p">(</span><span class="s2">&quot;DATA IS BEING PROCESSED ...&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">launch_data_processing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">)</span>
+
+            <span class="n">print_header_with_specific_layout</span><span class="p">(</span><span class="s2">&quot;MODEL IS BEING TRAINED ...&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">model_saving_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">launch_model_training</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+
+            <span class="n">print_header_with_specific_layout</span><span class="p">(</span><span class="s2">&quot;STARTING APPLICATION ...&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># self.launch_FaceRecognizer(model_saving_path, self.names)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_application</span><span class="p">()</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_application</span><span class="p">(</span><span class="s1">&#39;fail&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.close_application"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.close_application">[docs]</a>    <span class="k">def</span> <span class="nf">close_application</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_status</span><span class="o">=</span><span class="s1">&#39;success&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Closes the application efficiently (kills all running threads and closes the window).</span>
+
+<span class="sd">            :param run_status: flag indicating whether the application runs successfully or not.</span>
+<span class="sd">            :type run_status: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">run_status</span> <span class="o">!=</span> <span class="s1">&#39;success&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;THE APPLICATION CRASHED !&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;THE APPLICATION RAN SUCCESSFULLY !&quot;</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">print_header_with_specific_layout</span><span class="p">(</span><span class="s2">&quot;KILLING THREADS ...&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done.&quot;</span><span class="p">)</span>
+
+        <span class="n">print_header_with_specific_layout</span><span class="p">(</span><span class="s2">&quot;CLOSING APPLICATION ...&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done.&quot;</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stdout_listener</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ApplicationLauncher_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.launch_data_processing"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_data_processing">[docs]</a>    <span class="k">def</span> <span class="nf">launch_data_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Launches the data processing phase.</span>
+
+<span class="sd">            :param current_working_directory: path the to the Current Working Directory (CWD).</span>
+<span class="sd">            :type current_working_directory: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">face_recognizer.src.back.process_data</span> <span class="kn">import</span> <span class="n">process_data</span>
+        <span class="n">process_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_working_directory</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.launch_model_training"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_model_training">[docs]</a>    <span class="k">def</span> <span class="nf">launch_model_training</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Launches the training phase.</span>
+
+<span class="sd">            :param current_working_directory: path the to the Current Working Directory (CWD).</span>
+<span class="sd">            :type current_working_directory: str</span>
+
+<span class="sd">            :param model_name: name of the model.</span>
+<span class="sd">            :type model_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">face_recognizer.src.back.build_model</span> <span class="kn">import</span> <span class="n">train_model</span>
+        <span class="k">return</span> <span class="n">train_model</span><span class="p">(</span><span class="n">current_working_directory</span><span class="p">,</span> <span class="n">model_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.launch_FaceRecognizer"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.launch_FaceRecognizer">[docs]</a>    <span class="k">def</span> <span class="nf">launch_FaceRecognizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_saving_path</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Launches the application.</span>
+
+<span class="sd">            :param model_saving_path: path where to save the model trained.</span>
+<span class="sd">            :type model_saving_path: str</span>
+
+<span class="sd">            :param classes: classes (i.e. names) of people to recgnize.</span>
+<span class="sd">            :type classes: list(str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">face_recognizer.src.back.faceRecognizer</span> <span class="kn">import</span> <span class="n">main</span>
+        <span class="n">main</span><span class="p">(</span><span class="n">model_saving_path</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomApplicationLauncherWindow.popupWindow"><a class="viewcode-back" href="../../../../face_recognizer.src.front.html#face_recognizer.src.front.UI_application_launcher.CustomApplicationLauncherWindow.popupWindow">[docs]</a>    <span class="k">def</span> <span class="nf">popupWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_title</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">icon</span><span class="p">,</span> <span class="n">informative_text</span><span class="p">,</span> <span class="n">buttons_number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Pops up a window when the user wants to start the images processing phase.</span>
+
+<span class="sd">                :param window_title: Title of the popup window.</span>
+<span class="sd">                :type window_title: str</span>
+
+<span class="sd">                :param text: text to display in the popup window.</span>
+<span class="sd">                :type text: str</span>
+
+<span class="sd">                :param icon: type of icon to display.</span>
+<span class="sd">                :type icon: message.setIcon() instance</span>
+
+<span class="sd">                :param informative_text: additional text to display.</span>
+<span class="sd">                :type informative_text: str</span>
+
+<span class="sd">                :param buttons_number: number of buttons. </span>
+<span class="sd">                        NOTE: That is an argument used by the programmer that allows him to re-use this function several times with 1 or 2 buttons.</span>
+<span class="sd">                :type buttons_number: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="n">window_title</span><span class="p">)</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">			QWidget {</span>
+<span class="sd">				background-color: rgb(46, 46, 46); </span>
+<span class="sd">				color: #ffffff;</span>
+<span class="sd">			}</span>
+<span class="sd">			QPushButton {</span>
+<span class="sd">					color: #ffffff;</span>
+<span class="sd">					background-color: none;</span>
+<span class="sd">					border: 2px solid rgb(0, 170, 255);</span>
+<span class="sd">					border-radius: 10px;</span>
+<span class="sd">					width: 50px;</span>
+<span class="sd">					height: 20px;</span>
+<span class="sd">			}</span>
+<span class="sd">			QPushButton:hover {</span>
+<span class="sd">				border: 2px solid rgb(255, 0, 0);</span>
+<span class="sd">			}</span>
+<span class="sd">			QPushButton:pressed {</span>
+<span class="sd">				background-color: rgb(100, 100, 100);</span>
+<span class="sd">			}</span>
+<span class="sd">			&quot;&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">message</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">buttons_number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span> <span class="o">|</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Abort</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">buttons_number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error_dialog</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QErrorMessage</span><span class="p">()</span>
+            <span class="n">error_dialog</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Excepted &quot;buttons_number&quot; values: 1 or 2, given: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">buttons_number</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">error_dialog</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;QtWidgets.QMessageBox.Ok&#39;</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">message</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="n">informative_text</span><span class="p">)</span>
+
+        <span class="n">buttonReply</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">buttonReply</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nabil Karroumi-Zouibaa.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

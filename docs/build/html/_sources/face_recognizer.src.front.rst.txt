@@ -4,6 +4,14 @@ face\_recognizer.src.front package
 Submodules
 ----------
 
+face\_recognizer.src.front.UI\_application\_launcher module
+-----------------------------------------------------------
+
+.. automodule:: face_recognizer.src.front.UI_application_launcher
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 face\_recognizer.src.front.UI\_automatic\_photos\_taker module
 --------------------------------------------------------------
 

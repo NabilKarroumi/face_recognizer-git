@@ -155,7 +155,6 @@
 <span class="sd">This module contains many usefull functions that are often used by multiply other modules. </span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -465,6 +464,32 @@
         <span class="n">train</span> <span class="o">-=</span> <span class="n">gap</span>
 
     <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">test</span></div>
+
+
+<div class="viewcode-block" id="print_header_with_specific_layout"><a class="viewcode-back" href="../../../../face_recognizer.src.back.html#face_recognizer.src.back.utils.print_header_with_specific_layout">[docs]</a><span class="k">def</span> <span class="nf">print_header_with_specific_layout</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints the secified header with respect to a specific layout built with a given template.</span>
+
+<span class="sd">        :param header: Header to print</span>
+<span class="sd">        :type header: str</span>
+
+<span class="sd">        :param header: Template to use for the layout.</span>
+<span class="sd">        :type header: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start_header_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">template</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">end_header_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">template</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+
+    <span class="n">main_line</span> <span class="o">=</span> <span class="n">template</span><span class="p">[:</span><span class="n">start_header_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> \
+        <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">header</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">template</span><span class="p">[</span><span class="n">end_header_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">second_line</span> <span class="o">=</span> <span class="n">template</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">second_line</span> <span class="o">=</span> <span class="n">template</span> <span class="o">+</span> <span class="s1">&#39;#&#39;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">second_line</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">main_line</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">second_line</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

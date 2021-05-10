@@ -402,6 +402,101 @@ See show_img() function.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-face_recognizer.src.back.pyqt_multithreadings_management">
+<span id="face-recognizer-src-back-pyqt-multithreadings-management-module"></span><h2>face_recognizer.src.back.pyqt_multithreadings_management module<a class="headerlink" href="#module-face_recognizer.src.back.pyqt_multithreadings_management" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all the classes used to setup and manage the GUI multithreadings.</p>
+<dl class="py class">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.pyqt_multithreadings_management.</span></code><code class="sig-name descname"><span class="pre">CustomStreamWriter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'white'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#CustomStreamWriter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class defines a custom stream writer that will stack the data fetched by sys.stdout into a queue.
+StdoutListener will then fetch this queue content and emit it as a QtCore.pyqtSignal(str) signal.</p>
+<dl class="py method">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter.flush">
+<code class="sig-name descname"><span class="pre">flush</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#CustomStreamWriter.flush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter.write">
+<code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#CustomStreamWriter.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.CustomStreamWriter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is mandatory. It overwrites the write function usually used by sys.stdout.
+Instead of displaying the text, it stacks it into the queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – Text to be stacked into the queue.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunction">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.pyqt_multithreadings_management.</span></code><code class="sig-name descname"><span class="pre">LongRunningFunction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#LongRunningFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QRunnable</span></code></p>
+<p>This class is a “worker”. It defines and sets up all the parameters and behaviour we want our future thread to accomplish.
+Will be added to the QThreadPool instance defined in the MainApplication.</p>
+<p>This worker has to continuously execute a long-running function.</p>
+<dl class="py method">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunction.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#LongRunningFunction.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunction.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.pyqt_multithreadings_management.</span></code><code class="sig-name descname"><span class="pre">LongRunningFunctionSignals</span></code><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#LongRunningFunctionSignals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QObject</span></code></p>
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.error">
+<code class="sig-name descname"><span class="pre">error</span></code><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.finished">
+<code class="sig-name descname"><span class="pre">finished</span></code><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.finished" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.result">
+<code class="sig-name descname"><span class="pre">result</span></code><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.LongRunningFunctionSignals.result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.pyqt_multithreadings_management.</span></code><code class="sig-name descname"><span class="pre">StdoutListener</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#StdoutListener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QRunnable</span></code></p>
+<p>This class is a “worker”. It defines and sets up all the parameters and behaviour we want our future thread to accomplish.
+Will be added to the QThreadPool instance defined in the MainApplication.</p>
+<p>This worker has to continuously (run is overwritten) listen for data stacked in a queue and emit the related signal defined in StdoutListenerSignals.</p>
+<dl class="py method">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#StdoutListener.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener.stop">
+<code class="sig-name descname"><span class="pre">stop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#StdoutListener.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListenerSignals">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.pyqt_multithreadings_management.</span></code><code class="sig-name descname"><span class="pre">StdoutListenerSignals</span></code><a class="reference internal" href="_modules/face_recognizer/src/back/pyqt_multithreadings_management.html#StdoutListenerSignals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListenerSignals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtCore.QObject</span></code></p>
+<p>This class simply creates QtCore.pyqtSignal(s) to be emitted by a <a class="reference internal" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener" title="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListener"><code class="xref py py-func docutils literal notranslate"><span class="pre">StdoutListener()</span></code></a> object.</p>
+<dl class="py attribute">
+<dt id="face_recognizer.src.back.pyqt_multithreadings_management.StdoutListenerSignals.message">
+<code class="sig-name descname"><span class="pre">message</span></code><a class="headerlink" href="#face_recognizer.src.back.pyqt_multithreadings_management.StdoutListenerSignals.message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-face_recognizer.src.back.utils">
 <span id="face-recognizer-src-back-utils-module"></span><h2>face_recognizer.src.back.utils module<a class="headerlink" href="#module-face_recognizer.src.back.utils" title="Permalink to this headline">¶</a></h2>
 <p>This module contains many usefull functions that are often used by multiply other modules.</p>
@@ -528,6 +623,20 @@ Note: src_path and dst_path must be folders</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dir_path</strong> (<em>str</em>) – path to the directory</p></li>
 <li><p><strong>extension</strong> (<em>str</em>) – extension of interest</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="face_recognizer.src.back.utils.print_header_with_specific_layout">
+<code class="sig-prename descclassname"><span class="pre">face_recognizer.src.back.utils.</span></code><code class="sig-name descname"><span class="pre">print_header_with_specific_layout</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'############################################################'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/face_recognizer/src/back/utils.html#print_header_with_specific_layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#face_recognizer.src.back.utils.print_header_with_specific_layout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the secified header with respect to a specific layout built with a given template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> (<em>str</em>) – Header to print</p></li>
+<li><p><strong>header</strong> – Template to use for the layout.</p></li>
 </ul>
 </dd>
 </dl>
