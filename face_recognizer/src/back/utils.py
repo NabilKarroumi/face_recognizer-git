@@ -2,7 +2,6 @@
 This module contains many usefull functions that are often used by multiply other modules. 
 """
 
-
 import shutil
 import re
 import os
@@ -312,3 +311,29 @@ def set_datasets_sizes(list_of_sizes):
         train -= gap
 
     return train, valid, test
+
+
+def print_header_with_specific_layout(header, template='#'*60):
+    """
+        Prints the secified header with respect to a specific layout built with a given template.
+
+        :param header: Header to print
+        :type header: str
+
+        :param header: Template to use for the layout.
+        :type header: str
+    """
+    start_header_index = len(template)//2 - len(header)//2
+    end_header_index = len(template)//2 + len(header)//2
+
+    main_line = template[:start_header_index - 1] + \
+        ' ' + header + ' ' + template[end_header_index + 1:]
+
+    if len(header) % 2 == 0:
+        second_line = template
+    else:
+        second_line = template + '#'
+
+    print(second_line)
+    print(main_line)
+    print(second_line)

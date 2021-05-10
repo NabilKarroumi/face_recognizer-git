@@ -9,7 +9,7 @@ import numpy as np
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from face_recognizer.raw_UIs.automatic_photos_taker import Ui_automatic_photos_taker
-from face_recognizer.src.front.UI_data_processing import CustomDataProcessing
+from face_recognizer.src.front.UI_application_launcher import CustomApplicationLauncherWindow
 
 
 class VideoThread(QtCore.QThread):
@@ -220,8 +220,8 @@ class CustomAutomaticPhotosTakerWindow(Ui_automatic_photos_taker):
             :type current_working_directory: str
         """
         self.window = QtWidgets.QMainWindow()
-        # self.ui = CustomDataProcessing(current_working_directory)
-        self.ui = CustomDataProcessing(
+        # self.ui = CustomApplicationLauncherWindow(current_working_directory)
+        self.ui = CustomApplicationLauncherWindow(
             self.names, self.current_working_directory, self.model_name)
         self.ui.setupUi(self.window)
         self.window.show()

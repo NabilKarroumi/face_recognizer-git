@@ -89,5 +89,3 @@ def main(model_saving_path, classes):
 
     # Destroy windows
     cv2.destroyAllWindows()
-
-    exit()
